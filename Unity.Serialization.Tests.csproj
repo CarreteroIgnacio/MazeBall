@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{16eee051-8b0b-687a-3d4a-aaf1988e14d6}</ProjectGuid>
+    <ProjectGuid>{4a42c6b9-241d-a57b-3e56-01065813fd7e}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,17 +41,17 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Json\Adapters" />
-     <None Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Unity.Serialization.Tests.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Json\Migration" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Json\Validation" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Binary" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Json\Parsing" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Binary\Adapters" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Utility" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Json" />
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Tests\Runtime\Unity.Serialization.Tests\Types" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Json\Adapters" />
+     <None Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Unity.Serialization.Tests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Json\Migration" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Json\Validation" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Binary" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Json\Parsing" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Binary\Adapters" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Utility" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Json" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Tests\Unity.Serialization.Tests\Types" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

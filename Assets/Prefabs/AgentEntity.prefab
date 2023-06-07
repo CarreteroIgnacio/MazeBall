@@ -17,7 +17,7 @@ GameObject:
   m_Layer: 8
   m_Name: AgentEntity
   m_TagString: Untagged
-  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -201,7 +201,8 @@ MonoBehaviour:
     m_SimplificationTolerance: 0.015
     m_BevelRadius: 0.05
     m_MinimumAngle: 2.5000002
-  m_CustomMesh: {fileID: -1440667603354232009, guid: eb513afc5aab02a40bf5b4ab519749f8, type: 3}
+  m_CustomMesh: {fileID: -1440667603354232009, guid: eb513afc5aab02a40bf5b4ab519749f8,
+    type: 3}
   m_ForceUnique: 0
   m_Material:
     m_SupportsTemplate: 1
@@ -217,8 +218,8 @@ MonoBehaviour:
     m_Restitution:
       m_Override: 0
       m_Value:
-        Value: 0.5
-        CombineMode: 0
+        Value: 0
+        CombineMode: 1
     m_BelongsToCategories:
       m_Override: 0
       m_Value:

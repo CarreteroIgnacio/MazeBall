@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using CCC;
+﻿using CCC;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Entities.Graphics;
-using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Physics.Authoring;
@@ -11,9 +9,9 @@ using Unity.Physics.Extensions;
 using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
-using Matrix4x4 = UnityEngine.Matrix4x4;
-using Random = UnityEngine.Random;
-using Vector3 = UnityEngine.Vector3;
+
+// No usar Linq Lpm
+
 
 
 namespace Path
@@ -27,21 +25,20 @@ namespace Path
             public static SysAgent Instance;
 
             private static readonly PhysicsCategoryTags LevelCategory = new() { Category00 = true };
+            private static readonly PhysicsCategoryTags PlayerCategory = new() { Category01 = true };
             private static readonly PhysicsCategoryTags AgentCategory = new() { Category02 = true };
-            private static readonly PhysicsCategoryTags LevelPlayerCategory = new() { Category00 = true, Category01 = true };
+            private static readonly PhysicsCategoryTags AgentPlayerCategory = new() { Category01 = true, Category02 = true };
 
             private NativeList<Entity> _allAgents;
 
             private Entity _prefabAgentEntity;
 
-            public delegate void Nekon();
             public delegate void DelegateState(
                 ref AgentComponent agentComponent,
                 ref LocalToWorld localToWorld,
                 ref PhysicsVelocity physicsVelocity,
                 ref PhysicsMass physicsMass);
 
-            private static Dictionary<int, EntityDelegate> _allDelegates;
 
             private float3 _playerPos;
 
@@ -49,146 +46,168 @@ namespace Path
             private bool _alreadyStarted;
         #endregion
 
-        
+        private static readonly float3[] SpawnPoints = {
+            new(16, 5,16),
+            new(-16, 5,16),
+            new(16, 5,-16),
+            new(-16, 5,-16)
+        };
 
-
-        public class EntityDelegate // As Class work fine :D no performance issue
-        {
-            public Entity AgentEntity;
-            public DelegateState CurrentState;
-            public NativeList<Vector3> PathList;
-            public float3 Position;
-
-            public void PathJob(float3 position, float3 target)
-            {
-                PathList.Clear();
-                PathList.AddRange(Path2D.GetPath(position, target));
-            }
-        }
-
+ 
         #region Event Functions
 
-            public void EnableSystem(bool active) => Enabled = _validStart = active;
-            public void PauseSystem(bool active) => Enabled = active;
-
-            protected override void OnCreate()
-            {
-                Instance = this;
-
-                if(_allDelegates == null)
-                    _allDelegates = new Dictionary<int, EntityDelegate>();
-                else
-                    _allDelegates.Clear();
-            }
+            private void EnableSystem(bool active) => Enabled = _validStart = active;
+            private void PauseSystem(bool active) => Enabled = active;
+            protected override void OnCreate() => Instance = this;
 
             protected override void OnStartRunning()
             {
-                if (!_validStart)
+                /*
+                if (!SystemAPI.HasSingleton<AgentSpawnerComponent>())
                 {
+                    Debug.LogError("There is not AgentSpawnerComponent");
+                    Enabled = false;
+                    return;
+                }*/
+                if (!SystemAPI.HasSingleton<PhysicsWorldSingleton>())
+                {
+                    Debug.LogError("There is not PhysicsWorldSingleton");
                     Enabled = false;
                     return;
                 }
+                
+                
+                if (!_validStart)
+                {
+                    SystemManager.TrueStart += EnableSystem;
+                    Enabled = false;
+                    return;
+                }
+                SystemManager.PauseEvent += PauseSystem;
+                
+                
                 if(_alreadyStarted)return;
 
-                GameManager.Instance.LevelChanging += SpawnEnemy;
-                GameManager.Instance.LevelReset += ResetAgent;
+                GameManager.LevelChanging += SpawnEnemy;
+                GameManager.LevelReset += ResetAgent;
+                SystemManager.EcsParamsRuntime += OnRuntimeValidate;
                 
                 
                 _allAgents = new NativeList<Entity>(Allocator.Persistent);
+ 
                 _prefabAgentEntity = SystemAPI.GetSingleton<AgentSpawnerComponent>().PrefabEntity;
-                //EntityCleanUp();
-
-                SpawnEnemy(new float3(16, 10,16));
-                SpawnEnemy(new float3(-16, 10,16));
-                SpawnEnemy(new float3(16, 10,-16));
-                SpawnEnemy(new float3(-16, 10,-16));
-
-                var count = 0;
+                EntityCleanUp();
+                 
+                CreateAgentEntity(new float3(16, 10,16));
+                CreateAgentEntity(new float3(-16, 10,16));
+                CreateAgentEntity(new float3(16, 10,-16));
+                CreateAgentEntity(new float3(-16, 10,-16));
+                
 
                 Entities
                     .WithoutBurst()
-                    .ForEach((Entity entity, ref AgentComponent agentComponent, ref LocalToWorld localToWorld) =>
+                    .ForEach((ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref LocalTransform localTransform) =>
                     {
-                        agentComponent.EntityID = count;
-                        _allDelegates.Add(count, new EntityDelegate());
-
-                        _allDelegates[count] = new EntityDelegate
-                        {
-                            AgentEntity = entity,
-                            PathList = new NativeList<Vector3>(Allocator.Persistent),
-                        };
-                        if (CanSeePlayer(agentComponent, localToWorld))
-                            _allDelegates[count].CurrentState += ChasePlayerState;
-                        else
-                        {
-                            GetRandomPath(agentComponent, localToWorld);
-                            _allDelegates[count].CurrentState = null;
-                            _allDelegates[count].CurrentState += FollowNodeState;
-                        }
-
-                        count++;
-
+                        agentComponent.CurrentState = AgentState.FollowNode;
+                        //Debug.Log(localTransform.Position);
+                        GetRandomPath(ref agentComponent, localToWorld.Position, GridManager2D.GridData, GridManager2D.PathNodeArray);
                     }).Run();
 
                 GizmosManager.Instance.DrawGizmos -= MyGizmos;
                 GizmosManager.Instance.DrawGizmos += MyGizmos;
 
                 _alreadyStarted = true;
+                
+                //EntityManager.DestroyEntity(_prefabAgentEntity);
+                
+                
+                ResetAgent();
             }
 
 
             protected override void OnUpdate()
             {
+                if(!Enabled)return;
+
+
+                var agentAttack = new NativeArray<AgentComponent>(AgentAmount+1, Allocator.TempJob);
+                var playerPos = _playerPos;
+
+                var pathArray = GridManager2D.PathNodeArray;
+                var gridData = GridManager2D.GridData;
+                var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld.CollisionWorld;
+
+
+                var count = 0;//
                 Entities
-                    .WithoutBurst()
-                    .ForEach((ref LocalToWorld localToWorld, in PlayerComponent playerComponent) =>
+                    //.WithoutBurst()
+                    .ForEach(( int entityInQueryIndex,
+                        ref AgentComponent agentComponent, ref LocalToWorld localToWorld,
+                        ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass, ref LocalTransform localTransform) =>
                     {
-                        _playerPos = localToWorld.Position;
-                    }).Run();
-
-
-
-                Entities
-                    .WithoutBurst()
-                    .ForEach((ref AgentComponent agentComponent, ref LocalToWorld localToWorld,
-                        ref PhysicsVelocity physicsVelocity,
-                        ref PhysicsMass physicsMass) =>
-                    {
-                        if (Vector3.Distance(_playerPos, localToWorld.Position) < agentComponent.DamageRadius)
+                        
+                        if (Float3.Distance(playerPos, localToWorld.Position) < agentComponent.DamageRadius)
                         {
-                            SysPlayer.Instance.TakeDamage(agentComponent.Damage, localToWorld.Position, _playerPos );
-                            var dir = ((Vector3)(localToWorld.Position - _playerPos )).normalized;
-                            physicsVelocity.ApplyLinearImpulse(physicsMass, dir / 2);
+                            agentComponent.Position = localToWorld.Position;
+                            agentAttack[count] = agentComponent;
+                            physicsVelocity.ApplyLinearImpulse(physicsMass,  Float3.Direction(playerPos, localToWorld.Position));
+                        }//
+
+                       
+                        
+                        switch (agentComponent.CurrentState)
+                        {
+                            case AgentState.ChasePlayer:
+                                ChasePlayerState(playerPos, SystemAPI.Time.DeltaTime, gridData, ref pathArray, ref agentComponent, ref localToWorld, ref physicsVelocity, ref physicsMass, ref localTransform, ref collisionWorld);
+                                break;
+                            case AgentState.FollowNode:
+                                FollowNodeState(playerPos, SystemAPI.Time.DeltaTime, gridData, ref pathArray,  ref agentComponent, ref localToWorld, ref physicsVelocity, ref physicsMass, ref localTransform, ref collisionWorld);
+                                break;
+
+                            case AgentState.Null:
+                                break;
                         }
+
+
+
+                        count++;
                     }).Run();
 
                 
-                Entities
-                    .WithoutBurst()
-                    .ForEach((ref AgentComponent agentComponent, ref LocalToWorld localToWorld,
-                        ref PhysicsVelocity physicsVelocity,
-                        ref PhysicsMass physicsMass) =>
-                    {
-                        _allDelegates[agentComponent.EntityID].Position = localToWorld.Position;
-                        _allDelegates[agentComponent.EntityID].CurrentState(ref agentComponent, ref localToWorld,
-                            ref physicsVelocity, ref physicsMass);
+                foreach (var agentComponent in agentAttack)
+                {
+                    if(agentComponent.IsValid)
+                        SysPlayer.Instance.TakeDamage(agentComponent.Damage, agentComponent.Position);
+                }
 
-                    }).Run();
+
+
+                agentAttack.Dispose();
+                //Debug.Log(agentComponent.NodePath.c0.x + "   " + nodes[0]);
+
+                //var path = agentComponent.NodePath.ToArrayFloat2(Allocator.Temp);
+
+                /*
+                for (var i = 1; i < agentComponent.NodeAmount; i++) 
+                    Debug.DrawLine(
+                        path[i - 1].AddY(.5f) ,
+                        path[i].AddY(.5f) ,
+                        Color.Lerp(Color.green, Color.red, i/(float)agentComponent.NodeAmount));
+                
+                Debug.DrawLine(path[agentComponent.IndexPath].AddY(.5f), path[agentComponent.IndexPath].AddY(3), Color.magenta);*/
+
             }
 
+            protected override void OnDestroy()
+            {
+                if (GizmosManager.Instance is not null)
+                    GizmosManager.Instance.DrawGizmos -= MyGizmos;
+            }
 
+            #endregion
+ 
 
-            protected override void OnDestroy() => GizmosManager.Instance.DrawGizmos -= MyGizmos;
-
-        #endregion
-
-        private static readonly float3[] _spawnPoints = {
-            new(16, 10,16),
-            new(-16, 10,16),
-            new(16, 10,-16),
-            new(-16, 10,-16)
-        };
-
+        private void OnRuntimeValidate(SystemManager.SysEcsRuntimeParams pRuntimeParams) => _playerPos = pRuntimeParams.PlayerPos;
 
         private void ResetAgent()
         {
@@ -199,13 +218,14 @@ namespace Path
                 .ForEach((ref LocalTransform localTransform,
                     ref PhysicsVelocity physicsVelocity, in AgentComponent agentComponent) =>
                 {
-                    localTransform.Position = _spawnPoints[count];
+                    localTransform.Position = SpawnPoints[count];
                     localTransform.Rotation = quaternion.identity;
                     
                     physicsVelocity.Angular = float3.zero;
                     physicsVelocity.Linear = float3.zero;
                     
                     count++;
+                    if (count >= SpawnPoints.Length) count = 0;
                 }).Run();
            
         }
@@ -214,71 +234,226 @@ namespace Path
         //------------------------------------------------------------------------------------------------------------//
 
 
-        private void ChasePlayerState(ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass)
+        private static void ChasePlayerState(float3 playerPos, float deltaTime, GridDataStruct gridData, ref NativeArray<Node> pathArray, ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass, ref LocalTransform localTransform, ref CollisionWorld collisionWorld)
         {
-            if (CanSeePlayer(agentComponent, localToWorld))
-                MoveTowards(_playerPos, ref agentComponent, ref localToWorld, ref physicsVelocity, ref physicsMass);
+         
+            if (CanSeePlayer(playerPos, agentComponent, localToWorld, ref collisionWorld))
+                MoveTowards(playerPos, deltaTime, ref agentComponent, ref localToWorld, ref physicsVelocity, ref physicsMass);
             else
             {
-                _allDelegates[agentComponent.EntityID].PathJob(localToWorld.Position, _playerPos);
-                _allDelegates[agentComponent.EntityID].CurrentState = null;
-                _allDelegates[agentComponent.EntityID].CurrentState += FollowNodeState;
+                GetRandomPath(ref agentComponent, localTransform.Position, gridData, pathArray);
+                agentComponent.CurrentState = AgentState.FollowNode;
             }
         }
 
-
-        private void FollowNodeState(ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass)
+        private static void FollowNodeState(float3 playerPos, float deltaTime, GridDataStruct gridData, ref NativeArray<Node> pathArray, ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass, ref LocalTransform localTransform, ref CollisionWorld collisionWorld)
         {
-            if (CanSeePlayer(agentComponent, localToWorld))
+            if (CanSeePlayer(playerPos, agentComponent, localToWorld, ref collisionWorld))
             {
-                _allDelegates[agentComponent.EntityID].CurrentState = null;
-                _allDelegates[agentComponent.EntityID].CurrentState += ChasePlayerState;
-                _allDelegates[agentComponent.EntityID].PathList.Clear();
+                agentComponent.CurrentState = AgentState.ChasePlayer;
+                return;
+            }
+            
+            if (agentComponent.IndexPath >= agentComponent.NodeAmount )
+            {
+                GetRandomPath(ref agentComponent, localTransform.Position, gridData, pathArray);
                 return;
             }
 
-            if (_allDelegates[agentComponent.EntityID].PathList.Length < 2)
-            {
-                GetRandomPath(agentComponent, localToWorld);
-                return;
-            }
+            var pathList = agentComponent.NodePath.ToArrayFloat2(Allocator.Temp);
+            var currentNode = CalculateCurrentNode(ref agentComponent, localTransform.Position, pathList, physicsVelocity.Linear, ref collisionWorld, gridData, pathArray);
+            
+            MoveTowards(currentNode, deltaTime, ref agentComponent, ref localToWorld, ref physicsVelocity, ref physicsMass);
 
-            var currentNode = CalculateCurrentNode(localToWorld.Position, _allDelegates[agentComponent.EntityID].PathList, physicsVelocity.Linear );
-            MoveTowards(currentNode, ref agentComponent, ref localToWorld, ref physicsVelocity, ref physicsMass);
+
+            pathList.Dispose();
+
 
         }
 
 
 
-        private Vector3 CalculateCurrentNode(Vector3 position, NativeList<Vector3> pathList, Vector3 velocity)
+        private static float3 CalculateCurrentNode(ref AgentComponent agentComponent, float3 position, NativeArray<float2> pathList, float3 lineal, ref CollisionWorld collisionWorld, GridDataStruct gridData, NativeArray<Node> pathArray)
         {
-            Vector3 closeTarget;
-            position.y = pathList[0].y;// para ignorar una dimension
+            if (Float2.Distance(position.RemoveY(), pathList[agentComponent.IndexPath]) < .5f) agentComponent.IndexPath++;
+
+
+            if (agentComponent.IndexPath >= agentComponent.NodeAmount)
+            {
+                GetRandomPath(ref agentComponent, position, gridData, pathArray);
+                return position;
+            }
+
+            if (agentComponent.IndexPath > 0 && !RayCastToNode(position, pathList[agentComponent.IndexPath].AddY(0.5f), ref collisionWorld))
+            {
+                agentComponent.IndexPath--;
+            }
+            
+            //Debug.Log(agentComponent.NodePath.ToArrayFloat2(Allocator.Temp)[agentComponent.IndexPath].AddY(.5f));
+
+            var pathlist = agentComponent.NodePath.ToArrayFloat2(Allocator.Temp);
+            var value = pathlist[agentComponent.IndexPath].AddY(.5f);
+            pathlist.Dispose();
+
+            return value;
+
+        }
+
+        
+        private static void MoveTowards(float3 toPosition, float deltaTime, ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass)
+        {
 
             
-            var distNextNode = Vector3.Distance(position, pathList[0]);
-            if ((distNextNode <  0.5f) || (distNextNode > Vector3.Distance(position, pathList[1]))
-                || CheckInertiaDot(position, velocity, pathList[0], pathList[1]))
-            {
-                closeTarget = pathList[1];
-                pathList.RemoveAt(0);
-            }
-            else
-                closeTarget = pathList[0];
+            var direction = Float3.Direction(localToWorld.Position, toPosition);
 
-            return closeTarget;
+            var nyan = (direction.x > direction.z ? direction.WithZeroX().WithZeroY() : direction.WithZeroY().WithZeroZ()) *2;
+
+            direction += nyan; 
+
+            Debug.DrawLine(localToWorld.Position, localToWorld.Position + nyan, Color.green);
+
+            var wtlMatrix =  localToWorld.Value.inverse();
+            var worldRot = Float3.Cross(direction, Float3.up).normalized();
+            var localRot = wtlMatrix.MultiplyVector(worldRot);
+
+
+            
+            
+            var nya = Mathf.InverseLerp(-1, 0.45f, Float3.Dot(direction, physicsVelocity.Linear));
+            var braking = Mathf.Lerp(0.75f, 1, nya);
+            
+            physicsVelocity.ApplyAngularImpulse(physicsMass, localRot * (agentComponent.Speed * deltaTime * braking) );
+            physicsVelocity.Angular = Float3.ClampMagnitude(physicsVelocity.Angular, agentComponent.SpeedMagnitude);
+
+            physicsVelocity.Linear.x *= braking;//
+            physicsVelocity.Linear.z *= braking;
+
+
+            //var angle = Float3.Angle(direction, physicsVelocity.Linear);
+            //var nya = Vector3.RotateTowards(physicsVelocity.Linear, direction, SystemAPI.Time.fixedDeltaTime, 10);
+            //physicsVelocity.Linear = nya;
+            
+            //Debug.DrawLine(localToWorld.Position, localToWorld.Position+ direction * 2, Color.green);
+            //Debug.DrawLine(localToWorld.Position, localToWorld.Position + physicsVelocity.Linear.normalized() * 2, Color.magenta);
+
         }
 
-        private bool CheckInertiaDot(Vector3 position, Vector3 velocity, Vector3 node1, Vector3 node2)
+
+
+        private static void GetRandomPath(ref AgentComponent agentComponent, float3 position, GridDataStruct gridData, NativeArray<Node> pathArray)
         {
-            if (RayCastToNode(position, node2)) return false;
+            
+            var path = Path2D.GetPathWorldSpace2D(position, float3.zero, out var nodeAmount, gridData, pathArray);
 
-            var dir = (node2 - position).normalized;
-            return Vector3.Dot(velocity.normalized, dir) > .95f;
+            
+            agentComponent.NodePath = Float4x4.ToMatrix(path);
+            agentComponent.NodeAmount = nodeAmount;
+            agentComponent.IndexPath = 0;
+
+            path.Dispose();
         }
 
 
-        private bool RayCastToNode(Vector3 start, Vector3 end)
+        private void GetAllPathRandom( GridDataStruct gridData, NativeArray<Node> pathArray)
+        {
+            Entities
+                .WithoutBurst()
+                .ForEach((ref AgentComponent agentComponent, ref LocalToWorld localToWorld, ref LocalTransform localTransform) =>
+                {
+                    GetRandomPath(ref agentComponent, localTransform.Position, gridData, pathArray);
+                }).Run();
+            
+        }
+        
+        public void UpdatePathJobsLevel() => GetAllPathRandom(GridManager2D.GridData, GridManager2D.PathNodeArray);
+
+
+        private static bool CanSeePlayer(float3 playerPos, AgentComponent agentComponent, LocalToWorld localToWorld, ref CollisionWorld collisionWorld)
+        {
+            //var dir = Float3.Direction(localToWorld.Position, playerPos);
+            return RayCastToNode(localToWorld.Position, playerPos, ref collisionWorld);
+                //Float3.Distance(localToWorld.Position, playerPos) <= agentComponent.ViewDist &&
+                //RayCastToPlayer(localToWorld.Position, dir, agentComponent.ViewDist, ref collisionWorld) &&
+        }
+
+        private static bool RayCastToPlayer(float3 start, float3 direction, float distance, ref CollisionWorld collisionWorld)
+        {
+            
+            var colFilter = new CollisionFilter {
+                BelongsTo = AgentCategory.Value,
+                CollidesWith = AgentPlayerCategory.Value,
+                GroupIndex = 0
+            };
+
+            var rayInput = new RaycastInput {
+                Start = start,
+                End = direction * distance,
+                Filter = colFilter
+            };
+
+            collisionWorld.CastRay(rayInput, out var hit);
+            //var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld.CollisionWorld;
+
+            return  hit.Entity != Entity.Null;
+        }
+
+        //--------------------------------------------------------------//
+        //--------------------------------------------------------------//
+
+
+        private void EntityCleanUp()
+        {
+            var entity = EntityManager.CreateEntity();
+
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<AgentComponent>(_prefabAgentEntity));
+
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<LocalToWorld>(_prefabAgentEntity));
+            EntityManager.AddComponentData(entity, new LocalTransform
+            {
+                Position = new float3( 0, 7.5f,0),
+                Rotation = quaternion.identity,
+                Scale = 1
+            });
+
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<RenderBounds>(_prefabAgentEntity));
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<MaterialMeshInfo>(_prefabAgentEntity));
+            
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<PhysicsCollider>(_prefabAgentEntity));
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<PhysicsMass>(_prefabAgentEntity));
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<PhysicsVelocity>(_prefabAgentEntity));
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<PhysicsDamping>(_prefabAgentEntity));
+
+            EntityManager.AddSharedComponent(entity, EntityManager.GetSharedComponent<PhysicsWorldIndex>(_prefabAgentEntity));
+            EntityManager.AddSharedComponent(entity, EntityManager.GetSharedComponent<RenderFilterSettings>(_prefabAgentEntity));
+            EntityManager.AddSharedComponentManaged(entity, EntityManager.GetSharedComponentManaged<RenderMeshArray>(_prefabAgentEntity));
+            
+            EntityManager.AddComponent<WorldToLocal_Tag>(entity);
+            EntityManager.AddComponent<Simulate>(entity);
+
+            EntityManager.DestroyEntity(_prefabAgentEntity);
+            _prefabAgentEntity = entity;
+
+        }
+
+        private int AgentAmount;
+        private void CreateAgentEntity(float3 position)
+        {
+            //EntityManager.SetComponentData(_prefabAgentEntity,new LocalTransform { Position = position });
+            var entity = EntityManager.Instantiate(_prefabAgentEntity);
+            AgentAmount++;
+            /*
+            var agentComponent = EntityManager.GetComponentData<AgentComponent>(entity);
+            agentComponent.IsValid = true;
+            EntityManager.SetComponentData(entity,agentComponent);*/
+   
+            
+            
+            _allAgents.Add(entity);
+        }
+        private void SpawnEnemy() => CreateAgentEntity(new float3(1, 5, 0));
+
+
+        private static bool RayCastToNode(float3 start, float3 end, ref CollisionWorld collisionWorld)
         {
             end.y = start.y += .5f;
             var colFilter = new CollisionFilter {
@@ -294,210 +469,16 @@ namespace Path
                 Filter = colFilter
             };
 
-            var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld.CollisionWorld;
+            
             collisionWorld.CastRay(rayInput, out var hit);
 
             Debug.DrawLine(start,end, Color.red);
-            return EntityManager.HasComponent<PilarComponent>(hit.Entity);
+            return hit.Entity == Entity.Null;
         }
 
-
-
-        private void MoveTowards(float3 toPosition,
-            ref AgentComponent agentComponent,
-            ref LocalToWorld localToWorld,
-            ref PhysicsVelocity physicsVelocity,
-            ref PhysicsMass physicsMass)
-        {
-
-
-            var direction = ((Vector3)(toPosition - localToWorld.Position)).normalized;
-            MoveTowardsPhysics(direction, agentComponent.Speed, agentComponent.SpeedMagnitude, ref physicsVelocity, ref physicsMass, ref localToWorld);
-
-
-        }
-
-        private void MoveTowardsPhysics(Vector3 direction, float speed, float speedMagnitude,
-            ref PhysicsVelocity physicsVelocity,
-            ref PhysicsMass physicsMass,
-            ref LocalToWorld localToWorld)
-        {
-
-            var wtlMatrix = ((Matrix4x4)localToWorld.Value).inverse;
-            var worldRot = Vector3.Cross(direction, Vector3.up).normalized;
-
-            var localRot = wtlMatrix.MultiplyVector(worldRot);
-            physicsVelocity.ApplyAngularImpulse(physicsMass, localRot * (speed * SystemAPI.Time.DeltaTime) );
-
-            physicsVelocity.Angular = Vector3.ClampMagnitude(physicsVelocity.Angular, speedMagnitude);
-
-        }
-
-
-
-        private static void GetRandomPath(AgentComponent agentComponent, LocalToWorld localToWorld)
-        {
-            _allDelegates[agentComponent.EntityID].PathJob(localToWorld.Position,
-                GridManager2D.Instance.GetValidNode());
-        }
-
-        private static void GetRandomPath()
-        {
-            foreach (var entityDelegate in _allDelegates.Values)
-            {
-                entityDelegate.PathJob(entityDelegate.Position,
-                    GridManager2D.Instance.GetValidNode());
-            }
-        }
         
-        public void UpdatePathJobsLevel() => GetRandomPath();
-
-
-        private bool CanSeePlayer(AgentComponent agentComponent, LocalToWorld localToWorld)
-        {
-            var dir = (Vector3)(_playerPos - localToWorld.Position);
-            return 
-                Vector3.Distance(localToWorld.Position, _playerPos) <= agentComponent.ViewDist &&
-                RayCastToPlayer(localToWorld.Position, dir, agentComponent.ViewDist);
-        }
-
-
-
-        private bool RayCastToPlayer(Vector3 start, Vector3 direction, float distance)
-        {
-            var colFilter = new CollisionFilter {
-                BelongsTo = AgentCategory.Value,
-                CollidesWith = LevelPlayerCategory.Value,
-                GroupIndex = 0
-            };
-
-            var rayInput = new RaycastInput {
-                Start = start,
-                End = direction * distance,
-                Filter = colFilter
-            };
-            
-            var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld.CollisionWorld;
-            
-            return collisionWorld.CastRay(rayInput, out var hit) && 
-                   EntityManager.HasComponent<PlayerComponent>(hit.Entity);
-        }
-
-        //--------------------------------------------------------------//
-        //--------------------------------------------------------------//
-
-
-          private void EntityCleanUp()
-        {
-            var archetype = EntityManager.CreateArchetype(
-                typeof(AgentComponent),
-                typeof(LocalToWorld),
-                typeof(RenderBounds),
-                //typeof(WorldRenderBounds),
-                //typeof(ChunkWorldRenderBounds),
-                typeof(MaterialMeshInfo),
-                typeof(PhysicsCollider),
-                typeof(PhysicsDamping),
-                //typeof(PhysicsGravityFactor),
-                typeof(PhysicsVelocity),
-                typeof(PhysicsMass),
-                typeof(PhysicsWorldIndex),
-                typeof(WorldToLocal_Tag),
-                typeof(RenderFilterSettings),
-                typeof(RenderMeshArray)
-            );
-
-            var entity = EntityManager.CreateEntity(archetype);
-
-
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<AgentComponent>(_prefabAgentEntity));
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<LocalToWorld>(_prefabAgentEntity));
-
-
-            EntityManager.SetComponentData(entity, new RenderBounds
-            {
-                Value = EntityManager.GetComponentData<RenderBounds>(_prefabAgentEntity).Value
-            });
-
-            EntityManager.SetComponentData(entity, new PhysicsCollider
-            {
-                Value = EntityManager.GetComponentData<PhysicsCollider>(_prefabAgentEntity).Value
-            });
-
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<MaterialMeshInfo>(_prefabAgentEntity));
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PhysicsCollider>(_prefabAgentEntity));
-            
-            //EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PhysicsGravityFactor>(_prefabAgentEntity));
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PhysicsVelocity>(_prefabAgentEntity));
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PhysicsMass>(_prefabAgentEntity));
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PhysicsDamping>(_prefabAgentEntity));
-
-            EntityManager.SetSharedComponent(entity, EntityManager.GetSharedComponent<PhysicsWorldIndex>(_prefabAgentEntity));
-            EntityManager.SetSharedComponent(entity, EntityManager.GetSharedComponent<RenderFilterSettings>(_prefabAgentEntity));
-            EntityManager.SetSharedComponentManaged(entity, EntityManager.GetSharedComponentManaged<RenderMeshArray>(_prefabAgentEntity));
-//
-            
-            EntityManager.AddComponent<WorldToLocal_Tag>(entity);
-            EntityManager.AddComponent<Simulate>(entity);
-
-
-            /*
-
-            EntityManager.RemoveComponent<PerInstanceCullingTag>(_prefabAgentEntity);
-            EntityManager.RemoveComponent<LinkedEntityGroup>(_prefabAgentEntity);
-            EntityManager.RemoveComponent<BlendProbeTag>(_prefabAgentEntity);
-            EntityManager.RemoveComponent<PhysicsColliderKeyEntityPair>(_prefabAgentEntity);
-            EntityManager.RemoveComponent<EntityGuid>(_prefabAgentEntity);
-            EntityManager.RemoveComponent<Simulate>(_prefabAgentEntity);
-            EntityManager.RemoveComponent<LocalTransform>(_prefabAgentEntity);
-            */
-
-            // qda tremendo eh :v
-            //EntityManager.RemoveComponent<WorldToLocal_Tag>(_prefabAgentEntity);
-
-            EntityManager.DestroyEntity(_prefabAgentEntity);
-            _prefabAgentEntity = entity;
-
-        }
         
-          
-          private void CreateAgentEntity(float3 position, ref Entity prefab)
-          {
-              //position = new float3(Random.Range(-31, 31)),10, Random.Range(-31, 31));
-              var entity = EntityManager.Instantiate(prefab);
-
-              /*
-              EntityManager.SetComponentData(entity, 
-                  new LocalTransform
-                  {
-                      Position = position
-                  });
-                  
-            */
-              //EntityManager.RemoveComponent<LocalTransform>(entity);
-              Matrix4x4 trs = Matrix4x4.identity;
-
-              trs.m30 = position.x;
-              trs.m31 = position.y;
-              trs.m32 = position.z;
-              
-              
-              EntityManager.SetComponentData(entity, 
-                  new LocalToWorld
-                  {
-                      Value = Matrix4x4.TRS(position,Quaternion.identity, Vector3.one)
-                  });
-
-              
         
-              //var nya = EntityManager.GetComponentData<LocalToWorld>(entity);
-              //Debug.Log(nya.Position);
-              _allAgents.Add(entity);
-          }
-
-          public void SpawnEnemy(float3 position) => CreateAgentEntity(position, ref _prefabAgentEntity);
-
-          public void SpawnEnemy() => SpawnEnemy(new float3(0, 10, 0));
         
         
         
@@ -507,6 +488,8 @@ namespace Path
 
             private void MyGizmos()
             {
+                return;
+                /*
                 Gizmos.color = GizmoColor;
 
                 foreach (var entityDelegate in _allDelegates.Values)
@@ -522,12 +505,12 @@ namespace Path
 
                     foreach (var nya in entityDelegate.PathList)
                     {
-                        Gizmos.DrawLine(oldPos, nya);
-                        oldPos = nya;
+                        Gizmos.DrawLine(oldPos, nya.AddY(.5f));
+                        oldPos = nya.AddY(.5f);
                     }
                     
                     Gizmos.DrawWireSphere(localToWorld.Position, agent.DamageRadius  );
-                }
+                }*/
             }
 
         #endregion

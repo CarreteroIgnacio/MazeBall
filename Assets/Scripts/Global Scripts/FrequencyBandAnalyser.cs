@@ -5,7 +5,6 @@ using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
 using Random = UnityEngine.Random;
 
 public class FrequencyBandAnalyser : MonoBehaviour
@@ -16,20 +15,13 @@ public class FrequencyBandAnalyser : MonoBehaviour
     
     [Header("Shader")]
     public Material boxyMat;
+    public Material wallMat;
 
     [Header("Transitions")]
     public float transitionTime;
     [Range(0, 1)] public float globalSongDuration;
     [Range(0,1)] public float globalVolume;
     
-
-    [Header("Lights")]
-    public HDAdditionalLightData northLight;
-    public HDAdditionalLightData eastLight;
-    public HDAdditionalLightData southLight;
-    public HDAdditionalLightData westLight;
-
-
 
     [Header("Level List")]
     public int currentLevelIndex;
@@ -38,6 +30,7 @@ public class FrequencyBandAnalyser : MonoBehaviour
     [Header("Audio Source")]
     public int currentAudioSourceIndex;
     public AudioSource[] audioSourceArray = new AudioSource[2];
+    public float bandHighMul = 10f;
     
     // ---------------
     
@@ -45,21 +38,21 @@ public class FrequencyBandAnalyser : MonoBehaviour
     
     private static readonly int EmissiveAcute = Shader.PropertyToID("_EmissiveAcute");
     private static readonly int EmissiveGrave = Shader.PropertyToID("_EmissiveGrave");
-    private const int FrequencyBins = 512;
+    private const int FrequencyBins = 4096;
 
-    private float[] _samples;
     private float[] _sampleBuffer;
+    private NativeArray<float> _samples;
     
-    
-    
+
     #region Events Funcitons
 
         private void Awake() => Instance = this;
 
         private void Start()
         {
-            _samples = new float[FrequencyBins];
             _sampleBuffer = new float[FrequencyBins];
+            _samples = new NativeArray<float>(FrequencyBins, Allocator.Persistent);
+            
             
             _mapSettingsList = new List<MapSettings>();
 
@@ -71,26 +64,37 @@ public class FrequencyBandAnalyser : MonoBehaviour
         
         private void Update()
         {
-            audioSourceArray[currentAudioSourceIndex].GetSpectrumData(_sampleBuffer, 0, FFTWindow.BlackmanHarris);
-            
-            for (var i = 0; i < _samples.Length; i++)
-            {
-                if (_sampleBuffer[i] > _samples[i])
-                    _samples[i] = _sampleBuffer[i];
-                else
-                    _samples[i] = Mathf.Lerp(_samples[i], _sampleBuffer[i], Time.deltaTime * levelScriptableList[currentLevelIndex].smoothDownRate);
-            }
-            UpdateFreqBands64();
+            audioSourceArray[currentAudioSourceIndex].GetSpectrumData(_sampleBuffer, 0, FFTWindow.Rectangular);
 
             
+            var joby = new BandAnalyzerJob
+            {
+                SampleBuffer = new NativeArray<float>(_sampleBuffer ,Allocator.TempJob),
+                Samples = _samples,
+            
+                MatrixValues = new NativeArray<float4x4>(16, Allocator.TempJob),
+                Vec4ShaderMul = bandHighMul,
+                SmoothDownRate = levelScriptableList[currentLevelIndex].smoothDownRate,
+                DeltaTime = Time.deltaTime
+            };
+            joby.Run();
+
+            
+            for (var i = 0; i < joby.MatrixValues.Length; i++)
+                wallMat.SetMatrix($"_MatrixSector_{i}", joby.MatrixValues[i]);
+
+            
+            //_samples = joby.Samples;
+            //joby.Samples.Dispose();
+            joby.SampleBuffer.Dispose();
+            joby.MatrixValues.Dispose();
         }
-        
-    #endregion
+
+        #endregion
 
 
     private IEnumerator LevelChanger(float time)
     {
-        //var time = ;
         yield return new WaitForSeconds(time);
         GetNextLevel(false);
     }
@@ -120,12 +124,9 @@ public class FrequencyBandAnalyser : MonoBehaviour
         audioSourceArray[currentAudioSourceIndex].time = ran;
         audioSourceArray[currentAudioSourceIndex].Play();
         StartCoroutine(FadeSong(oldLevelIndex, oldSource, started));
+        GameManager.OnLevelChanging();
         StartCoroutine(LevelChanger(time));
-        
-        // tendria q cambiar toda la AI de los agents para poder usar el burst compile, xq sino se va al carajo la performcnce
-        //GameManager.Instance.OnLevelChanging();
     }
-
 
     public void PauseMusic(bool nya)
     {
@@ -156,11 +157,6 @@ public class FrequencyBandAnalyser : MonoBehaviour
             
             var lerp = Mathf.Lerp(0, 1, nya/transitionTime);
             
-            northLight.color = Color.Lerp(levelScriptableList[oldLevelIndex].northColor, levelScriptableList[currentLevelIndex].northColor, lerp);
-            eastLight.color = Color.Lerp(levelScriptableList[oldLevelIndex].eastColor, levelScriptableList[currentLevelIndex].eastColor, lerp);
-            southLight.color = Color.Lerp(levelScriptableList[oldLevelIndex].southColor, levelScriptableList[currentLevelIndex].southColor, lerp);
-            westLight.color = Color.Lerp(levelScriptableList[oldLevelIndex].westColor, levelScriptableList[currentLevelIndex].westColor, lerp);
-            
         
             boxyMat.SetColor(EmissiveAcute, 
                 Color.Lerp(levelScriptableList[oldLevelIndex].acuteColorShader, levelScriptableList[currentLevelIndex].acuteColorShader, lerp));
@@ -168,6 +164,10 @@ public class FrequencyBandAnalyser : MonoBehaviour
                 Color.Lerp(levelScriptableList[oldLevelIndex].graveColorShader, levelScriptableList[currentLevelIndex].graveColorShader, lerp));
             
             
+            wallMat.SetColor(EmissiveAcute, 
+                Color.Lerp(levelScriptableList[oldLevelIndex].acuteColorShader, levelScriptableList[currentLevelIndex].acuteColorShader, lerp));
+            wallMat.SetColor(EmissiveGrave, 
+                Color.Lerp(levelScriptableList[oldLevelIndex].graveColorShader, levelScriptableList[currentLevelIndex].graveColorShader, lerp));
             nya += Time.deltaTime;
             yield return 0;
         }
@@ -186,79 +186,6 @@ public class FrequencyBandAnalyser : MonoBehaviour
         globalVolume = vol;
         audioSourceArray[currentAudioSourceIndex].volume = levelScriptableList[currentLevelIndex].maxVolume * globalVolume;
     }
-    
-    private void UpdateFreqBands64()
-    {
-
-        
-        var joby = new BandAnalyzerJob
-        {
-            finalValues = new NativeArray<float4>(1,Allocator.TempJob),
-            samples = new NativeArray<float>(_samples ,Allocator.TempJob)
-        };
-        joby.Run();
-        
-        
-        //----  
-        northLight.intensity = Mathf.Lerp(
-            northLight.intensity,
-            levelScriptableList[currentLevelIndex].intencityMul * joby.finalValues[0].x,
-            levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime);
-
-        eastLight.intensity = Mathf.Lerp(
-            eastLight.intensity,
-            levelScriptableList[currentLevelIndex].intencityMul * joby.finalValues[0].y,
-            levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime);
-        
-        southLight.intensity = Mathf.Lerp(
-            southLight.intensity,
-            levelScriptableList[currentLevelIndex].intencityMul * joby.finalValues[0].z,
-            levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime);
-        
-        westLight.intensity = Mathf.Lerp(
-            westLight.intensity,
-            levelScriptableList[currentLevelIndex].intencityMul * joby.finalValues[0].w,
-            levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime);
-        //----    
-    
-        
-        
-        //----
-        northLight.range = Mathf.Clamp(
-                            Mathf.Lerp(
-                                northLight.range,
-                                levelScriptableList[currentLevelIndex].rangeMul * joby.finalValues[0].x,
-                                levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime),
-                            0,32);
-        
-        eastLight.range = Mathf.Clamp(
-                            Mathf.Lerp(
-                                eastLight.range,
-                                levelScriptableList[currentLevelIndex].rangeMul * joby.finalValues[0].y,
-                                levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime),
-                            0,32);
-                    
-        southLight.range = Mathf.Clamp(
-                            Mathf.Lerp(
-                                southLight.range,
-                                levelScriptableList[currentLevelIndex].rangeMul * joby.finalValues[0].z,
-                                levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime),
-                            0,32);
-    
-        westLight.range = Mathf.Clamp(
-                            Mathf.Lerp(
-                                westLight.range,
-                                levelScriptableList[currentLevelIndex].rangeMul * joby.finalValues[0].w,
-                                levelScriptableList[currentLevelIndex].speedLerp * Time.deltaTime),
-                            0,32);
-        //----
-
-
-        northLight.SetAreaLightSize(new Vector2( Mathf.Lerp(0,64, joby.finalValues[0].x * levelScriptableList[currentLevelIndex].shapeMul) , .01f));
-        eastLight.SetAreaLightSize(new Vector2( Mathf.Lerp(0,64, joby.finalValues[0].y * levelScriptableList[currentLevelIndex].shapeMul) , .01f));
-        southLight.SetAreaLightSize(new Vector2( Mathf.Lerp(0,64, joby.finalValues[0].z * levelScriptableList[currentLevelIndex].shapeMul) , .01f));
-        westLight.SetAreaLightSize(new Vector2( Mathf.Lerp(0,64, joby.finalValues[0].z * levelScriptableList[currentLevelIndex].shapeMul) , .01f));
-    }
 
     
 
@@ -266,45 +193,89 @@ public class FrequencyBandAnalyser : MonoBehaviour
     [BurstCompile]
     private struct BandAnalyzerJob : IJob
     {
-        public NativeArray<float4> finalValues;
-        public NativeArray<float> samples;
+        public NativeArray<float> Samples;
+        public NativeArray<float4x4> MatrixValues;
+        public float Vec4ShaderMul;
+        public NativeArray<float> SampleBuffer;
+        public float SmoothDownRate;
+        public float DeltaTime;
+        
+        
+
         public void Execute()
         {
-            var currentValues = new float4
+            var freqBands256 = new NativeArray<float>(256, Allocator.Temp);
+            for (var i = 0; i < Samples.Length; i++)
             {
-                x = CalculateBand(0, 8),
-                y = CalculateBand(20, 28),
-                z = CalculateBand(36, 44),
-                w = CalculateBand(56, 64)
-            };
+                if (SampleBuffer[i] > Samples[i])
+                    Samples[i] = SampleBuffer[i];
+                else
+                    Samples[i] = Mathf.Lerp(Samples[i], SampleBuffer[i], DeltaTime * SmoothDownRate);
+            }
+            
+            
+            // I can integrate this function in the matrix, but is already in burst, no performance difference y super boilerplate
+            UpdateFreqBands64(ref freqBands256);
+            
+            // Construct Matrix4x4 Array
+            for (var i = 0; i < 256; i += 16)
+            {
+                var nya = new Matrix4x4();
+                for (var j = 0; j < 16; j += 4)
+                {
+                    var sector = new Vector4(
+                        freqBands256[i + j],
+                        freqBands256[i + j + 1],
+                        freqBands256[i + j + 2],
+                        freqBands256[i + j + 3]
+                    );
+                    nya.SetRow(j/4, sector * Vec4ShaderMul);
 
-            finalValues[0] = currentValues;
+                }
+                MatrixValues[i/16] = nya;
+            }
+
+            freqBands256.Dispose();
         }
 
-        private float CalculateBand(int from, int to)
+  
+        private void UpdateFreqBands64(ref NativeArray<float> freqBands256)
         {
-            var average = 0f;
-            var count = 0;
-            var power = 0;
-            var sampleCount = 1;
 
-            for (var i = from; i < to; i++)
+            var count = 0;
+            var sampleCount = 1;
+            var power = 0;
+
+
+            for (var i = 0; i < 256; i++)
             {
-                if (i is 16 or 24 or 32 or 40 or 48 or 56)
+                float average = 0;
+
+                if (i is 64 or 24*4 or 32*4 or 40*4 or 48*4 or 56*4)
                 {
                     power++;
                     sampleCount = (int)Mathf.Pow(2, power);
                     if (power == 3)
                         sampleCount -= 2;
                 }
+
+
                 for (var j = 0; j < sampleCount; j++)
                 {
-                    average += samples[count] * (count + 1);
+                    //count = Mathf.Clamp(count, 0, 511);
+                    average += Samples[count] * (count + 1);
+
                     count++;
                 }
+
+                average /= count;
+                
+                //var nya = samples[i] + samples[i+1] + samples[i+2] + samples[i+3];
+                
+                
+                freqBands256[i] = average;
             }
-            return average;
         }
-        
+
     }
 }

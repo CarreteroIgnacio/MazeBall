@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{62cb4fb4-8d3f-db51-ddd6-e7fc5f2c0e12}</ProjectGuid>
+    <ProjectGuid>{0d840515-21e0-6b50-f0ff-fac3a9c9e27c}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,24 +41,24 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\SystemAPI" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Diff\Fuzzer" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\ForEachCodegen" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Content" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Journaling" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\ProfilerModules" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Types" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\SystemAPIQueryBuilderCodeGen" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Aspects\FunctionalTests" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Aspects\FunctionalTests\Types" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Aspects" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\EntityQuerySourceGen" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\TestData" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Serialization" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Unity.Entities.Tests.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\EntitiesAssert" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Tests\Diff" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\SystemAPI" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Diff\Fuzzer" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\ForEachCodegen" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Content" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Journaling" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\ProfilerModules" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Types" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\SystemAPIQueryBuilderCodeGen" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Aspects\FunctionalTests" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Aspects\FunctionalTests\Types" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Aspects" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\EntityQuerySourceGen" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\TestData" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Serialization" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Unity.Entities.Tests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\EntitiesAssert" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Tests\Diff" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

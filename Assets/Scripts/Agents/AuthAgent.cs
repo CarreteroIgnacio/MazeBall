@@ -39,7 +39,8 @@ namespace Path
                 LevelMask = authoring.levelMask,
                 KeepDistance = authoring.keepDistance,
                 Damage = authoring.damage,
-                DamageRadius = authoring.damageRadius
+                DamageRadius = authoring.damageRadius,
+                IsValid = true
             });
         }
     }

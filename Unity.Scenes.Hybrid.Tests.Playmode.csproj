@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{ef641516-096c-b949-350f-d4c5c2de9cde}</ProjectGuid>
+    <ProjectGuid>{a15ad7af-bac1-cfdb-2f76-0f1a02014ea5}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Hybrid.Tests\Playmode\Unity.Scenes.Hybrid.Tests.Playmode.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Hybrid.Tests\Playmode" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Hybrid.Tests\Playmode\Unity.Scenes.Hybrid.Tests.Playmode.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Hybrid.Tests\Playmode" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

@@ -20,6 +20,7 @@ namespace CCC
         public Transform leakContainer;
 
         public CinemachineVirtualCamera virtualCamera;
+        public Camera camera;
         public float noiseAmount;
         public float noiseDuration;
         

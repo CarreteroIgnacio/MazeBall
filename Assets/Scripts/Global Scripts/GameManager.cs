@@ -10,21 +10,21 @@ public class GameManager : MonoBehaviour
     public float pointsGainSpeed;
 
     public delegate void LevelDelegate();
-    public event LevelDelegate LevelChanging;
-    public virtual void OnLevelChanging() => LevelChanging?.Invoke();
+    public static event LevelDelegate LevelChanging;
+    public static void OnLevelChanging() => LevelChanging?.Invoke();
 
     public delegate void LevelResetDelegate();
-    public event LevelResetDelegate LevelReset;
-    public virtual void OnLevelReset() => LevelReset?.Invoke();
+    public static event LevelResetDelegate LevelReset;
+    private static void OnLevelReset() => LevelReset?.Invoke();
 
     
     public delegate void GameOverDelegate();
-    public event GameOverDelegate GameOver;
-    public virtual void OnGameOver() => GameOver?.Invoke();
+    public static event GameOverDelegate GameOver;
+    public static void OnGameOver() => GameOver?.Invoke();
     
     public delegate void TogglePauseDelegate(bool active);
-    public event TogglePauseDelegate TogglePauseEvent;
-    public virtual void OnTogglePauseGame(bool active) => TogglePauseEvent?.Invoke(active);
+    public static event TogglePauseDelegate TogglePauseEvent;
+    private static void OnTogglePauseGame(bool active) => TogglePauseEvent?.Invoke(active);
     private void Awake() => Instance = this;
   
     
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         TogglePauseGame();
 
         GameOver += TogglePauseGame;
+        
         //StartCoroutine(LevelChanger());
     }
 

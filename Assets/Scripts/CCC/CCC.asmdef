@@ -13,14 +13,16 @@
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:02490096ad9cdf84198e1f54951e6d16",
         "GUID:4307f53044263cf4b835bd812fc161a4",
-        "GUID:e00140a815de944528348782854abe39"
+        "GUID:e00140a815de944528348782854abe39",
+        "GUID:6bfefdf09ee6431fae75a6f5e06a0e89",
+        "GUID:173d48c26c6d12d44b6bf616ebd69a92"
     ],
     "includePlatforms": [
         "Editor",
         "WindowsStandalone64"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": true,
+    "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

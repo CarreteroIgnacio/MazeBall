@@ -22,7 +22,7 @@ public class LeakPool : MonoBehaviour
     }
 
 
-    public bool CreateLeak(Vector3 playerPos, Vector3 forward)
+    public bool CreateLeak(Vector3 forward)
     {
         if(Time.timeSinceLevelLoad - currentTime < TimeBetweenLeak) return false;
         if(_activeLeaks.Count == MaxLeaks) return false;
@@ -36,10 +36,12 @@ public class LeakPool : MonoBehaviour
             leak = _disabledLeaks[0];
             _disabledLeaks.Remove(leak);
         }
-        leak.transform.position = playerPos + forward * .3f;
-        leak.transform.forward = forward;
         leak.transform.parent = transform;
+        leak.transform.localPosition = Vector3.zero;
+        leak.transform.forward = forward;
+        //leak.transform.localPosition += leak.transform.forward * .5f;
         leak.SetActive(true);
+        
         //leak.transform.localPosition = forward * .5f;
         _activeLeaks.Add(leak);
 

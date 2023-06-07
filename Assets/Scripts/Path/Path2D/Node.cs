@@ -11,12 +11,12 @@ namespace Path
     public struct Node
     {
         public int2 Coords { get; }
-        public Vector3 WorldPosition { get; }
+        public float3 WorldPosition { get; }
         public bool IsWalkable { get; set; }
 
         public int Index { get; }
 
-        public Node(int2 cor, Vector3 pos, int index)
+        public Node(int2 cor, float3 pos, int index)
         {
             Coords = cor;
             WorldPosition = pos;

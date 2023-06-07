@@ -60,13 +60,16 @@ namespace CCC
                     
                 DashForce = authoring.dashForce,
                 DashCost = authoring.dashCost,
-                DashColdown = authoring.dashColdown,
+                DashCooldown = authoring.dashColdown,
                 DashCurrentCd = 0,
                 
                 JumpForce = authoring.jumpForce,
                 JumpCost = authoring.jumpCost,
-                JumpColdown = authoring.jumpColdown,
+                JumpCooldown = authoring.jumpColdown,
                 JumpCurrentCd = 0,
+                
+                IsGrounded = false,
+                PointsThisFrame = 0
                 
                 
                 

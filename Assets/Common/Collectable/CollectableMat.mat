@@ -16,6 +16,19 @@ MonoBehaviour:
   hdPluginSubTargetMaterialVersions:
     m_Keys: []
     m_Values: 
+--- !u!114 &-4410611425545627415
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -24,37 +37,37 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CollectableMat
-  m_Shader: {fileID: -6465566751694194690, guid: 8d34c5829e9ba1d43884d53fa46a8f27, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8d34c5829e9ba1d43884d53fa46a8f27,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _DISABLE_DECALS
-  - _DISABLE_DECALS
-  - _DISABLE_SSR
-  - _DISABLE_SSR
-  - _DISABLE_SSR_TRANSPARENT
-  - _DISABLE_SSR_TRANSPARENT
-  - _DOTS_INSTANCING_ON
-  - _DOTS_INSTANCING_ON
-  - _DOUBLESIDED_ON
-  - _DOUBLESIDED_ON
-  - _ENABLE_FOG_ON_TRANSPARENT
-  - _ENABLE_FOG_ON_TRANSPARENT
-  - _SURFACE_TYPE_TRANSPARENT
-  - _SURFACE_TYPE_TRANSPARENT
-  - _TRANSPARENT_WRITES_MOTION_VEC
-  - _TRANSPARENT_WRITES_MOTION_VEC
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - 
   - _
+  - _DISABLE_DECALS
+  - _DISABLE_DECALS
+  - _DISABLE_SSR
+  - _DISABLE_SSR
+  - _DISABLE_SSR_TRANSPARENT
+  - _DISABLE_SSR_TRANSPARENT
+  - _DOTS_INSTANCING_ON
+  - _DOTS_INSTANCING_ON
+  - _DOUBLESIDED_ON
+  - _DOUBLESIDED_ON
+  - _ENABLE_FOG_ON_TRANSPARENT
+  - _ENABLE_FOG_ON_TRANSPARENT
   - _NORMALMAP_TANGENT_SPACE
+  - _SURFACE_TYPE_TRANSPARENT
+  - _SURFACE_TYPE_TRANSPARENT
+  - _TRANSPARENT_WRITES_MOTION_VEC
+  - _TRANSPARENT_WRITES_MOTION_VEC
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
-    RenderType: Transparent
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -182,6 +195,7 @@ Material:
     - _AxisSpeed: 1
     - _BlendMode: 0
     - _CoatMask: 0
+    - _Color_Strenght: 2
     - _ConservativeDepthOffsetEnable: 0
     - _CornerSpeed: 1
     - _CullMode: 0
@@ -246,6 +260,8 @@ Material:
     - _PPDMinSamples: 5
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
+    - _QueueControl: 1
+    - _QueueOffset: 0
     - _RayTracing: 0
     - _ReceivesSSR: 0
     - _ReceivesSSRTransparent: 0
@@ -259,6 +275,7 @@ Material:
     - _SpecularAAScreenSpaceVariance: 0.1
     - _SpecularAAThreshold: 0.2
     - _SpecularOcclusionMode: 1
+    - _SpeedColor: 100
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 0
@@ -305,7 +322,8 @@ Material:
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CornerLerp: {r: 0.86, g: 0.5, b: 0, a: 0}
-    - _DiffusionProfileAsset: {r: -1.0530073e+33, g: -2.523648e+22, b: -2.4071458e+14, a: -1.7574724e+38}
+    - _DiffusionProfileAsset: {r: -1.0530073e+33, g: -2.523648e+22, b: -2.4071458e+14,
+        a: -1.7574724e+38}
     - _DoubleDistance: {r: 1, g: 1, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EdgeLerp: {r: 0.705, g: 0.6, b: 0, a: 0}

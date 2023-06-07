@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd36713168442b043bb728c729ad5ba7, type: 3}
   m_Name: Kinetic
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 30
   heightMapList:
   - {fileID: -413097445, guid: b41853dcb5dd26d4d853fc5f135817ed, type: 3}
   - {fileID: -713074156, guid: b41853dcb5dd26d4d853fc5f135817ed, type: 3}
@@ -31,15 +31,15 @@ MonoBehaviour:
   - {fileID: -1227138562, guid: b41853dcb5dd26d4d853fc5f135817ed, type: 3}
   - {fileID: 1437349815, guid: b41853dcb5dd26d4d853fc5f135817ed, type: 3}
   clip: {fileID: 8300000, guid: 08e955e4d02acbe4487b8b99ebac4bce, type: 3}
-  northColor: {r: 0.3388933, g: 1, b: 0, a: 0}
-  eastColor: {r: 0, g: 1, b: 0.681592, a: 0}
-  southColor: {r: 0, g: 0.7942071, b: 1, a: 0}
-  westColor: {r: 0, g: 0.6666665, b: 1, a: 0}
-  acuteColorShader: {r: 0.32984304, g: 1, b: 0, a: 0}
-  graveColorShader: {r: 0, g: 0.66492176, b: 1, a: 0}
+  northColor: {r: 0.16862738, g: 0.5, b: 0, a: 0}
+  eastColor: {r: 0, g: 0.5, b: 0.3411765, a: 0}
+  southColor: {r: 0, g: 0.39803922, b: 0.5, a: 0}
+  westColor: {r: 0, g: 0.3333335, b: 0.5, a: 0}
+  acuteColorShader: {r: 0.16470587, g: 0.5, b: 0, a: 0}
+  graveColorShader: {r: 0, g: 0.3333335, b: 0.5, a: 0}
   maxVolume: 0.462
-  speedLerp: 15
-  smoothDownRate: 4
+  speedLerp: 10
+  smoothDownRate: 5
   shapeMul: 0.3
   intencityMul: 2000
   rangeMul: 8

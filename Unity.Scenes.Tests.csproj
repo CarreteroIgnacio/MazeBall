@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{dc9ab9a1-ff26-aad9-723f-19ce3a1f0320}</ProjectGuid>
+    <ProjectGuid>{3a6773de-2b13-2998-5404-c59e4a819c32}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Tests\Unity.Scenes.Tests.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Tests" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Tests\Unity.Scenes.Tests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Tests" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

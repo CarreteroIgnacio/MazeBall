@@ -1,11 +1,18 @@
 using System.Collections.Generic;
 using Unity.Collections;
-
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
+
+public struct GridDataStruct
+{
+    public float3 Position;
+    public float3 StartPoint;
+    public int2 GridSize;
+    public float NodeDistance;
+    public float NodeSize;
+    public LayerMask CollideMask;
+}
 
 namespace Path
 {
@@ -27,7 +34,7 @@ namespace Path
 
         #region Attributes
 
-            [SerializeField] private int2 gridSize;
+            [SerializeField] public int2 gridSize;
 
             [Tooltip("si esta activo recalcula la grilla con cada modificacion")]
             [SerializeField] private bool recalculateGrid;
@@ -40,112 +47,108 @@ namespace Path
         #endregion
 
         #region Serialized Vars
-        
-            public static GridManager2D Instance { get; private set; }
-            public static Node[][] GridNodes { get; private set; }
-            public Vector3 StartPoint { get; private set; }
-            public static int2 GridSize => Instance.gridSize;
-            public static Vector3 BoxSize => Instance._boxSize;
-
-            private static Vector3 _startPoint;
-            private Vector3 _boxSize;
-
+            
             public static NativeArray<Node> PathNodeArray;
+            //private static Node[][] GridNodes { get; set; }
             
         #endregion
         
         
-        private float _mHalfTestNode;
-
-        private void Awake()
-        {
-            if (Instance == null)
-                Instance = this;
-            else
-                Destroy(gameObject);
-            _startPoint = StartPoint;
-            InitializeGrid();
-            
-        }
+        public static GridDataStruct GridData;
 
         
-        private void InitializeGrid()
-        {
-            var position = transform.position;
-            //new int3((int)position.x, (int)position.y, (int)position.z);
-            
-            // inicializo las cosas aca para que se refresquen con el Recaluate Grid
-            _boxSize = new Vector3(gridSize.x, 1,gridSize.y) * nodeDistance;
-            _mHalfTestNode = nodeDistance / 2;
-            StartPoint =
-                position - _boxSize / 2f +
-                Vector3.one * nodeDistance / 2; // De esta manera, la grilla tiene el pivot en el centro
 
+        #region Events
+            private void Awake()
+            {
+               
+                var position = transform.position;
+                GridData = new GridDataStruct
+                {
+                    Position = position,
+                    StartPoint = position - new Vector3(gridSize.x - nodeDistance ,0,gridSize.y - nodeDistance) *.5f ,
+                    GridSize = gridSize,
+                    NodeDistance = nodeDistance,
+                    NodeSize = nodeSize,
+                    CollideMask = collideWith
+                };
+                InitializeGrid(GridData);
+            }
+
+            private void OnDisable() { if(PathNodeArray.IsCreated) PathNodeArray.Dispose(); }
+
+            private void OnValidate()
+            {
+                
+                if (gridSize.x < 1) gridSize.x = 1;
+                if (gridSize.y < 1) gridSize.y = 1;
+
+
+                nodeDistance = Mathf.Abs(nodeDistance);
+                nodeSize =  Mathf.Abs(nodeSize);
+
+                if (nodeSize > nodeDistance)
+                    nodeSize = nodeDistance;
+
+                if (!recalculateGrid) return;
+                    /*
+                var position = transform.position;
+                GridData =  new GridDataStruct
+                {
+                    Position = position,
+                    StartPoint = position - new Vector3(-gridSize.x,0,-gridSize.y) *.5f,
+                    GridSize = gridSize,
+                    NodeDistance = nodeDistance,
+                    NodeSize = nodeSize,
+                    CollideMask = collideWith
+                };
+                InitializeGrid(GridData);*/
+            }
+
+        #endregion
+
+
+        private static void InitializeGrid(GridDataStruct gridData)
+        {
             if (PathNodeArray.IsCreated) PathNodeArray.Dispose();
             
-            PathNodeArray = new NativeArray<Node>(
-                64 * 64,//GridSize.x + gridSize.x * GridSize.y,
-                Allocator.Persistent);
-            
-            //print("Native Array Lenght of: " + PathNodeArray.Length);
-            
-            
-            GridNodes = new Node[gridSize.x][];
-            for (var x = 0; x < gridSize.x; x++)
+            PathNodeArray = new NativeArray<Node>(gridData.GridSize.x * gridData.GridSize.y, Allocator.Persistent);
+            //GridNodes = new Node[gridData.GridSize.x][];
+            for (var x = 0; x < gridData.GridSize.x; x++)
             {
-                GridNodes[x] = new Node[gridSize.y];
+                //GridNodes[x] = new Node[gridData.GridSize.y];
 
-                for (var y = 0; y < gridSize.y; y++)
+                for (var y = 0; y < gridData.GridSize.y; y++)
                 {
-                        var pos = StartPoint + new Vector3(x, 0, y) * nodeDistance;
-                        var index = GetIndex( x, y, 64);
-                        var node = new Node(new int2(x, y), pos , index);
+                    var pos = gridData.StartPoint + new float3(x, 0, y) * gridData.NodeDistance;
+                    var index = GetIndex( x, y, gridData.GridSize.x);
+                    var node = new Node(new int2(x, y), pos , index);
 
-                        if (Physics.CheckSphere(pos, nodeSize / 2, collideWith))
-                            node.SetIsWalkable(false);
+                    if (Physics.CheckSphere(pos, gridData.NodeSize / 2, gridData.CollideMask))
+                        node.SetIsWalkable(false);
 
-                        GridNodes[x][y] = node;
-                        PathNodeArray[node.Index] = node;
+                    //GridNodes[x][y] = node;
+                    PathNodeArray[node.Index] = node;
                 }
-
             }
     
         }
+        private static int GetIndex(int x, int y, int width) => x * width + y;
 
-        private static int GetIndex(int x, int y, int height) => x * height + y;
-        
-        private void OnDisable() => PathNodeArray.Dispose();
-        
-        private void OnValidate()
+        public static int2 GetClosestPointWorldSpace(float3 position, GridDataStruct gridData, NativeArray<Node> pathArray)
         {
-            if (gridSize.x < 1) gridSize.x = 1;
-            if (gridSize.y < 1) gridSize.y = 1;
 
+            var pos = position - gridData.StartPoint;
 
-            if (nodeDistance < 0) nodeDistance = 0;
-            if (nodeSize < 0) nodeSize = 0;
-
-
-            if (nodeSize > nodeDistance)
-                nodeSize = nodeDistance;
-
-            if (recalculateGrid && GridNodes != null) InitializeGrid();
             
-        }
-
-
-        public static int2 GetClosestPointWorldSpace(Vector3 position)
-        {
-
-            var pos = position - _startPoint;
-            var percentageX = Mathf.Clamp01(pos.x / BoxSize.x);
-            var percentageY = Mathf.Clamp01(pos.z / BoxSize.z);
-            var x = Mathf.Clamp(Mathf.RoundToInt(percentageX * GridSize.x), 0, GridSize.x - 1);
-            var y = Mathf.Clamp(Mathf.RoundToInt(percentageY * GridSize.y), 0, GridSize.y - 1);
-            var result = GridNodes[x][y];
+            var percentageX = Mathf.Clamp01(pos.x / gridData.GridSize.x);
+            var percentageY = Mathf.Clamp01(pos.z / gridData.GridSize.y);
+            var x = Mathf.Clamp(Mathf.RoundToInt(percentageX * gridData.GridSize.x), 0, gridData.GridSize.x - 1);
+            var y = Mathf.Clamp(Mathf.RoundToInt(percentageY * gridData.GridSize.y), 0, gridData.GridSize.y - 1);
+            var result = pathArray[GetIndex(x,y,gridData.GridSize.x)];
             while (!result.IsWalkable)
             {
-                var freePoints = new List<Node>();
+                var freePoints = new NativeList<Node>(Allocator.Temp);
                 for (var p = -1; p <= 1; p++)
                 for (var q = -1; q <= 1; q++)
                 {
@@ -153,18 +156,18 @@ namespace Path
 
                     var i = x + p;
                     var j = y + q;
-                    if (i > -1 && i < GridSize.x &&
-                        j > -1 && j < GridSize.y)
+                    if (i > -1 && i < gridData.GridSize.x &&
+                        j > -1 && j < gridData.GridSize.y)
                     {
-                        if (GridNodes[x + p][y + q].IsWalkable)
-                            freePoints.Add(GridNodes[x + p][y + q]);
+                        if (pathArray[GetIndex(x+p,y+q,gridData.GridSize.x)].IsWalkable)
+                            freePoints.Add(pathArray[GetIndex(x+p,y+q,gridData.GridSize.x)]);
                     }
                 }
 
                 var distance = Mathf.Infinity;
                 foreach (var t in freePoints)
                 {
-                    var dist = (t.WorldPosition - position).sqrMagnitude;
+                    var dist = (t.WorldPosition - position).sqrMagnitude();
                     if (!(dist < distance)) continue;
                         result = t;
                         distance = dist;
@@ -173,17 +176,17 @@ namespace Path
             return result.Coords;
         }
 
-        public float3 GetValidNode()
+        public static float3 GetRandomValidNode(NativeArray<Node> pathArray)
         {
             while (true)
             {
-             var nodeCord= Random.Range(0, PathNodeArray.Length - 1);;
-             if (PathNodeArray[nodeCord].IsWalkable)
-                 return PathNodeArray[nodeCord].WorldPosition;
+             var nodeCord= UnityEngine.Random.Range(0, pathArray.Length - 1);
+             if (pathArray[nodeCord].IsWalkable)
+                 return pathArray[nodeCord].WorldPosition;
             }
         }
 
-        public void UpdateValidNodes(NativeArray<float> levelSettingsArrayEntity)
+        public static void UpdateValidNodes(NativeArray<float> levelSettingsArrayEntity)
         {
             for (var i = 0; i < levelSettingsArrayEntity.Length; i++)
             {
@@ -212,8 +215,8 @@ namespace Path
         [Header("Box Gizmos")] [Header("")] [Tooltip("High Performance Impact :c")]
         public bool showBoxGizmo;
 
-        [SerializeField] private Color32 boxColor = new Color32(255, 0, 255, 255);
-        [SerializeField] private Color32 gridColor = new Color32(255, 255, 255, 10);
+        [SerializeField] private Color32 boxColor = new(255, 0, 255, 255);
+        [SerializeField] private Color32 gridColor = new(255, 255, 255, 10);
 
         private void OnDrawGizmos() => MyGizmos();
         private void OnDrawGizmosSelected() => MyGizmosSelected();
@@ -221,8 +224,8 @@ namespace Path
         [Header("View TestNodes")] [Tooltip("High Performance Impact :c")]
         public bool seeValids;
 
-        public Color32 validColor = new Color32(255, 255, 255, 50);
-        public Color32 invalidColor = new Color32(255, 0, 0, 150);
+        public Color32 validColor = new(255, 255, 255, 50);
+        public Color32 invalidColor = new(255, 0, 0, 150);
         public bool seeInvalids;
 
 
@@ -238,10 +241,10 @@ namespace Path
 
             Gizmos.color = gridColor;
 
-            _mHalfTestNode = nodeDistance / 2;
+            var halfNodeDist = nodeDistance / 2;
             var tf = position;
 
-            tf.x -= gridSize.x * _mHalfTestNode - _mHalfTestNode;
+            tf.x -= gridSize.x * halfNodeDist - halfNodeDist;
 
 
             var cubeSize = new Vector3(nodeDistance,1, boxSize.z);
@@ -257,7 +260,7 @@ namespace Path
             cubeSize = new Vector3(boxSize.x,1, nodeDistance);
 
             tf = position;
-            tf.z -= gridSize.y * _mHalfTestNode - _mHalfTestNode;
+            tf.z -= gridSize.y * halfNodeDist - halfNodeDist;
 
             for (var z = 0; z < gridSize.y; z += 2)
             {

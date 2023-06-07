@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{24042d4c-fb40-2d99-70fd-d75bd5426001}</ProjectGuid>
+    <ProjectGuid>{e59b43ed-dab6-ecdd-ed6b-cdfb9f2db902}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,14 +41,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\Jobs" />
-     <None Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\NativeSortTests.tt" />
-     <None Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\FixedListTests.tt" />
-     <None Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\FixedStringSizedTests.tt" />
-     <None Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\Unity.Collections.Tests.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests" />
-     <None Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\NativeParallelHashSetTests.tt" />
-     <None Include="Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.Tests\NativeHashSetTests.tt" />
+     <Folder Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\Jobs" />
+     <None Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\NativeSortTests.tt" />
+     <None Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\FixedListTests.tt" />
+     <None Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\FixedStringSizedTests.tt" />
+     <None Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\Unity.Collections.Tests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests" />
+     <None Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\NativeParallelHashSetTests.tt" />
+     <None Include="Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.Tests\NativeHashSetTests.tt" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

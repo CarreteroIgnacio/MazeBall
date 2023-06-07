@@ -24,7 +24,8 @@ namespace Collectable
                 Points = authoring.points,
                 Healing = authoring.healing,
                 Air = authoring.air,
-                Energy = authoring.energy
+                Energy = authoring.energy,
+                IsValid = true
             });
         }
     }

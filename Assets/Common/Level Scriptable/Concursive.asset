@@ -31,15 +31,15 @@ MonoBehaviour:
   - {fileID: -661702177, guid: f64069bf5cd78e44382a4ca047d06ad3, type: 3}
   - {fileID: 553966997, guid: f64069bf5cd78e44382a4ca047d06ad3, type: 3}
   clip: {fileID: 8300000, guid: e57c129f5efb4ac4e923b45ed0d33bc7, type: 3}
-  northColor: {r: 1, g: 0.6666667, b: 0, a: 0}
-  eastColor: {r: 1, g: 0.5299011, b: 0, a: 0}
-  southColor: {r: 1, g: 0, b: 0.23032951, a: 0}
-  westColor: {r: 1, g: 0, b: 0.4003868, a: 0}
-  acuteColorShader: {r: 1, g: 0.4136126, b: 0, a: 0}
-  graveColorShader: {r: 1, g: 0, b: 0.33507872, a: 0}
+  northColor: {r: 0.5, g: 0.33333334, b: 0, a: 0}
+  eastColor: {r: 0.5, g: 0.2647059, b: 0, a: 0}
+  southColor: {r: 0.5, g: 0, b: 0.11568642, a: 0}
+  westColor: {r: 0.5, g: 0, b: 0.20000005, a: 0}
+  acuteColorShader: {r: 0.5, g: 0.20588237, b: 0, a: 0}
+  graveColorShader: {r: 0.5, g: 0, b: 0.16666675, a: 0}
   maxVolume: 0.371
   speedLerp: 10
-  smoothDownRate: 3
+  smoothDownRate: 5
   shapeMul: 0.3
   intencityMul: 1000
   rangeMul: 8

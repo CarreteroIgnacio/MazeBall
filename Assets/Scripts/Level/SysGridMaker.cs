@@ -1,6 +1,4 @@
-using CCC;
 using Path;
-using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Entities.Graphics;
@@ -9,270 +7,349 @@ using Unity.Physics;
 using Unity.Rendering;
 using Unity.Transforms;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 
 namespace Level
 {
-    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public partial class SysGridMaker : SystemBase
     {
+        private static float3 _lodDistance;
+        private static float _levelDuration;
+        private static float4x4 _cameraLtw;
 
-        public static SysGridMaker Instance;
 
-        private static MaterialMeshInfo _materialMeshInfoLod0;
-        private static MaterialMeshInfo _materialMeshInfoLod1;
-        private MaterialMeshInfo urpMat;
         #region Internals Vars
 
-            private static int _index;
-            private float _currentTime;
-            private static GridMakerComponent _gridMakerEnt;
-            private static float _timeRunning;
-            private const float GridOffset = 0;
-            private NativeList<Entity> _allEntities;
-            private static Vector3 _startPos;
-            private Entity _prefabEntity;
-            private bool _validStart;
-            private bool _alreadyStarted;
+        private static GridMakerComponent _gridMakerComponent;
+        private static float _timeRunning;
+        private Entity _prefabEntity;
+        private bool _validStart;
+        private bool _alreadyStarted;
+
         #endregion
 
+
+        private static LoDData _loDBakeData;
+
+        private struct LoDData
+        {
+            public NativeArray<MaterialMeshInfo> MeshInfoDown;
+            public NativeArray<MaterialMeshInfo> MeshInfoUp;
+            public NativeArray<MaterialMeshInfo> MeshInfoUpRight;
+            public NativeArray<MaterialMeshInfo> MeshInfoUpForward;
+            public NativeArray<MaterialMeshInfo> MeshInfoUpTop;
+
+            public void Init()
+            {
+                MeshInfoDown = new NativeArray<MaterialMeshInfo>(2, Allocator.Persistent);
+                MeshInfoUp = new NativeArray<MaterialMeshInfo>(2, Allocator.Persistent);
+                MeshInfoUpRight = new NativeArray<MaterialMeshInfo>(2, Allocator.Persistent);
+                MeshInfoUpForward = new NativeArray<MaterialMeshInfo>(2, Allocator.Persistent);
+                MeshInfoUpTop = new NativeArray<MaterialMeshInfo>(2, Allocator.Persistent);
+            }
+        }
 
         #region Events Functions
 
-
-            protected override void OnCreate() => Instance = this;
-
-            protected override void OnStartRunning()
+        protected override void OnStartRunning()
+        {
+            _lodDistance = new float3(15, 25, 0);
+            if (!_validStart)
             {
-                if (!_validStart)
-                {
-                    Enabled = false;
-                    return;
-                }
-                if(_alreadyStarted)return;
-
-                _prefabEntity = SystemAPI.GetSingleton<PilarSpawnerComponent>().PrefabEntity;
-                var prefabEntityLod = SystemAPI.GetSingleton<PilarSpawnerComponent>().PrefabEntityLod;
-                var urpEntityMat = SystemAPI.GetSingleton<PilarSpawnerComponent>().UrpEntityMat;
-
-                _materialMeshInfoLod0 = EntityManager.GetComponentData<MaterialMeshInfo>(_prefabEntity);
-                _materialMeshInfoLod1 = EntityManager.GetComponentData<MaterialMeshInfo>(prefabEntityLod);
-                urpMat = EntityManager.GetComponentData<MaterialMeshInfo>(urpEntityMat);
-
-
-                
-                if (GraphicsSettings.currentRenderPipeline && 
-                    GraphicsSettings.currentRenderPipeline.GetType().ToString().Contains("UniversalRenderPipelineAsset"))
-                {
-                    _materialMeshInfoLod0.Material = urpMat.Material;
-                    _materialMeshInfoLod1.Material = urpMat.Material;
-                }
-                
-              
-                
-                
-                _gridMakerEnt = SystemAPI.GetSingleton<GridMakerComponent>();
-                _timeRunning = _gridMakerEnt.MapTransitionSpeed;
-                EntityCleanUp();
-
-                var halfScale = _gridMakerEnt.GridScale / 2  - 0.5f;
-                _startPos = _gridMakerEnt.LmPosition - new Vector3(halfScale, 0, halfScale);
-
-                _allEntities = new NativeList<Entity>(64 * 64, Allocator.Persistent);
-
-                for (var i = 0; i < _gridMakerEnt.CellAmount; i++)
-                    for (var j = 0; j < _gridMakerEnt.CellAmount; j++)
-                        PopulateCell(new Vector2Int(i, j),
-                            64);
-
-                UpdateDesiredHeight();
-                EntityManager.DestroyEntity(_prefabEntity);
-                _alreadyStarted = true;
+                SystemManager.TrueStart += EnableSystem;
+                Enabled = false;
+                return;
             }
+            if (_alreadyStarted) return; // this is to be able to deactivate the system when pause the game
+            
+            
+            SystemManager.PauseEvent += PauseSystem;
+            SystemManager.EcsParams += OnValidate;
+            SystemManager.EcsParamsRuntime += OnRuntimeValidate;
 
+            if (!SystemAPI.HasSingleton<PillarSpawnerComponent>())
+            {
+                Debug.LogError("There is not PilarSpawnerComponent");
+                Enabled = false;
+                return;
+            }
+            if (!SystemAPI.HasSingleton<GridMakerComponent>())
+            {
+                Debug.LogError("GridMakerComponent is Null");
+                Enabled = false;
+                return;
+            }
 
             
+            
+            _gridMakerComponent = SystemAPI.GetSingleton<GridMakerComponent>();
 
-            protected override void OnUpdate()
-            {
-                
-
-                var playerPos = (float3)CameraTrack.Instance.transform.forward * 3f;
-                Entities
-                    .ForEach((ref LocalToWorld localToWorld, in PlayerComponent playerComponent) =>
-                    {
-                        playerPos += localToWorld.Position;
-                    }).Run();
-
-                _timeRunning += SystemAPI.Time.fixedDeltaTime;
-                var time = _timeRunning * _gridMakerEnt.MapTransitionSpeed;
+            
+            
+            
+            
+            SetLodData();
+            EntityCleanUp();
 
 
-                var Lod0 = _materialMeshInfoLod0;
-                var Lod1 = _materialMeshInfoLod1;
-                Entities
-                    .ForEach(( ref LocalToWorld localToWorld, ref PilarComponent pilar, ref MaterialMeshInfo materialMeshInfo) =>
-                {
-                    if (time < 2f)
-                    {
-                        float height;
+            _timeRunning = _gridMakerComponent.MapTransitionSpeed;
+            var halfScale = _gridMakerComponent.GridScale / 2 - 0.5f;
+            var startPos = _gridMakerComponent.LmPosition - new Vector3(halfScale, 0, halfScale);
+            
+            for (var i = 0; i < 64; i++)
+            for (var j = 0; j < 64; j++)
+                CreatePilarEntity(new int2(i, j), new Vector3(i, 0, j) + startPos, ref _prefabEntity);
 
-                        if (time > 1)
-                            height = pilar.OldPos = pilar.CurrentPos = pilar.DesiredPos;
-                        else
-                            pilar.CurrentPos = height = Mathf.Lerp(pilar.OldPos, pilar.DesiredPos, time);
+            EntityManager.DestroyEntity(_prefabEntity);
+            _alreadyStarted = true;
+            
+            UpdateDesiredHeight();
+        }
 
-                        localToWorld.Value.c3.y = height;
-                    }
 
-                    var dist = Vector3.Distance(playerPos, localToWorld.Position);
-                    if (dist > 10f)
-                    {
-                        materialMeshInfo = Lod1;
+        protected override void OnUpdate()
+        {
+            if (!Enabled) return;
 
-                    }
-                    else if (dist < 8f)
-                    {
-                        materialMeshInfo = Lod0;
-                    }
+            _timeRunning += SystemAPI.Time.DeltaTime;
+            if (_timeRunning >= _levelDuration)
+                UpdateDesiredHeight();
+            LodSystem();
+        }
 
-                }).Run();
+        private void EnableSystem(bool active) => Enabled = _validStart = active;
+        private void PauseSystem(bool active) => Enabled = active;
 
-                if (_timeRunning >= FrequencyBandAnalyser.GetCurrentLevel().Duration) UpdateDesiredHeight();
-                
-            }
+
+        private void OnValidate(SystemManager.SysEcsParameters active) => _lodDistance = active.LodDistance;
+        private void OnRuntimeValidate(SystemManager.SysEcsRuntimeParams pRuntimeParams)
+        {
+            _cameraLtw = pRuntimeParams.CameraLtw;
+            _levelDuration = pRuntimeParams.LevelDuration;
+        }
+
+        #endregion
+        
+        
+        
+
 
         
-        #endregion
 
 
-        public void EnableSystem(bool active) => Enabled = _validStart = active;
-        public void PauseSystem(bool active) => Enabled = active;
+        #region PopulateGrid
 
-    
         private void EntityCleanUp()
         {
-            var archetype = EntityManager.CreateArchetype(
-                typeof(PilarComponent),
-                typeof(LocalToWorld),
-                typeof(RenderBounds),
-                typeof(MaterialMeshInfo),
-                typeof(PhysicsCollider),
-                typeof(PhysicsWorldIndex),
-                typeof(RenderFilterSettings),
-                typeof(RenderMeshArray)
-            );
+            var entity = EntityManager.CreateEntity();
 
-            var entity = EntityManager.CreateEntity(archetype);
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<PilarComponent>(_prefabEntity));
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<LocalToWorld>(_prefabEntity));
 
-
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PilarComponent>(_prefabEntity));
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<LocalToWorld>(_prefabEntity));
-
-
-            EntityManager.SetComponentData(entity, new RenderBounds
-            {
-                Value = EntityManager.GetComponentData<RenderBounds>(_prefabEntity).Value
-            });
-
-            EntityManager.SetComponentData(entity, new PhysicsCollider
-            {
-                Value = EntityManager.GetComponentData<PhysicsCollider>(_prefabEntity).Value
-            });
-
-
-
-            var meshInfo = EntityManager.GetComponentData<MaterialMeshInfo>(_prefabEntity);
-            EntityManager.SetComponentData(entity, meshInfo);
+            var matMeshInfo = EntityManager.GetComponentData<MaterialMeshInfo>(_prefabEntity);
+            EntityManager.AddComponentData(entity, matMeshInfo);
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<RenderBounds>(_prefabEntity));
+            
+            EntityManager.AddComponentData(entity, EntityManager.GetComponentData<PhysicsCollider>(_prefabEntity));
+            EntityManager.AddSharedComponent(entity, EntityManager.GetSharedComponent<PhysicsWorldIndex>(_prefabEntity));
+            EntityManager.AddSharedComponent(entity, EntityManager.GetSharedComponent<RenderFilterSettings>(_prefabEntity));
+            EntityManager.AddSharedComponentManaged(entity, EntityManager.GetSharedComponentManaged<RenderMeshArray>(_prefabEntity));
             
             
-            EntityManager.SetComponentData(entity, EntityManager.GetComponentData<PhysicsCollider>(_prefabEntity));
 
-            EntityManager.SetSharedComponent(entity, EntityManager.GetSharedComponent<PhysicsWorldIndex>(_prefabEntity));
-            EntityManager.SetSharedComponent(entity, EntityManager.GetSharedComponent<RenderFilterSettings>(_prefabEntity));
-            EntityManager.SetSharedComponentManaged(entity, EntityManager.GetSharedComponentManaged<RenderMeshArray>(_prefabEntity));
-
-            FrequencyBandAnalyser.Instance.boxyMat =
-                EntityManager.GetSharedComponentManaged<RenderMeshArray>(_prefabEntity).GetMaterial(meshInfo);
+            FrequencyBandAnalyser.Instance.boxyMat = EntityManager.GetSharedComponentManaged<RenderMeshArray>(_prefabEntity).GetMaterial(matMeshInfo);
             
             
             EntityManager.AddComponent<WorldToLocal_Tag>(entity);
-            EntityManager.RemoveComponent<Simulate>(entity);
 
-            
             EntityManager.DestroyEntity(_prefabEntity);
             _prefabEntity = entity;
         }
-        
 
-        private void PopulateCell(Vector2Int trimCords, int height)
-        {
-            var fraction = height / _gridMakerEnt.CellAmount;
-            
-            for (var x = fraction * trimCords.x; x < fraction * (trimCords.x + 1); x++)
-                for (var z = fraction * trimCords.y; z < fraction * (trimCords.y + 1); z++)
-                {
-                    var offset = x % 2 != 0 ? Vector3.zero : new Vector3(0, 0, GridOffset);
-                    var pilarPos = new Vector3(x, 0, z) + offset + _startPos;
+        private static int GetIndex(int x, int y) => x * 64 + y;
 
-                    _allEntities.Add(CreatePilarEntity(new int2(x, z), pilarPos, ref _prefabEntity));
-                }
-            
-        }
-        
-        private static int GetIndex(int x, int y, int height) => x * height + y;
-
-        private Entity CreatePilarEntity(int2 pilarCord, float3 position, ref Entity prefab)
+        private void CreatePilarEntity(int2 pilarCord, float3 position, ref Entity prefab)
         {
             var entity = EntityManager.Instantiate(prefab);
-
-            EntityManager.SetComponentData(entity, 
-                new LocalToWorld
-                {
-                    Value = Matrix4x4.TRS(position, Quaternion.identity, Vector3.one)
-                });
-            
-            EntityManager.SetComponentData(entity, 
-                new PilarComponent
-                {
-                    DesiredPos = 0,
-                    Cords = pilarCord,
-                    IsHigh = false
-                });
-
-            return entity;
+            EntityManager.SetComponentData(entity, new LocalToWorld { Value = float4x4.identity.WithPositionSet(position) });
+            EntityManager.SetComponentData(entity, new PilarComponent { Cords = pilarCord });
         }
+
+        #endregion
+
+
+
+        private void LodSystem()
+        {
+            var pillarPositionBaked = new NativeArray<float>(4096, Allocator.TempJob);
+            //--------------
+            // Bake current pillar height
+            Entities
+            .ForEach((ref LocalToWorld localToWorld, in PilarComponent pillarComponent) =>
+                {
+                    pillarPositionBaked[GetIndex(pillarComponent.Cords.x, pillarComponent.Cords.y)] = localToWorld.Position.y;
+                }).Run();
+            
+            //-------------------
+            
+            var timeRunning = _timeRunning * _gridMakerComponent.MapTransitionSpeed;
+            var cameraLtw = new LocalToWorld { Value = _cameraLtw };
+            var lodDistance = _lodDistance;
+            var lodBakeData = _loDBakeData;
+            var gridHeight = _gridMakerComponent.GridHeight;
+            
+            Entities
+                .WithReadOnly(pillarPositionBaked)
+                .WithReadOnly(lodBakeData)
+                .ForEach((ref LocalToWorld localToWorld, ref PilarComponent pillarComponent, ref MaterialMeshInfo materialMeshInfo) =>
+                {
+
+                    //--------------
+                    // HeightJob
+                    if (timeRunning < 2f)
+                    {
+                        float height;
+
+                        if (timeRunning > 1)
+                            height = pillarComponent.OldPos = pillarComponent.CurrentPos = pillarComponent.DesiredPos;
+                        else
+                            pillarComponent.CurrentPos = height = Mathf.Lerp(pillarComponent.OldPos,
+                                pillarComponent.DesiredPos, timeRunning);
+
+                        localToWorld.SetPositionY(height);
+                        pillarComponent.IsHighest = height > 0;
+                    }
+                    //--------------
+
+
+                    // inverse the scale to match the orientation
+                    localToWorld.SetVectorRight((localToWorld.Position.x < cameraLtw.Position.x ? Float3.right : Float3.left) * 1.02f);
+                    localToWorld.SetVectorForward((localToWorld.Position.z < cameraLtw.Position.z ? Float3.forward : Float3.back) * 1.02f);
+                    //--------------
+
+
+
+
+                    //--------------
+                    // LOD to distance
+                    var dist = Vector3.Distance(cameraLtw.Position, localToWorld.Position);
+                    var lodIndex = dist < lodDistance.x ? 0 : 1; 
+
+           
+
+
+                    //--------------
+                    // Cull System
+                    if (!pillarComponent.IsHighest)
+                        materialMeshInfo = lodBakeData.MeshInfoDown[lodIndex];
+                    else
+                    {
+                        var showRightFace = true;
+                        var showForwardFace = true;
+                        var indexZ = localToWorld.Position.z < cameraLtw.Position.z ? 1 : -1;
+
+                        if (pillarComponent.Cords.y + indexZ is >= 0 and <= 63)
+                        {
+                            var forwardPilar = pillarPositionBaked[GetIndex(pillarComponent.Cords.x, pillarComponent.Cords.y + indexZ)];
+
+                            if (forwardPilar >= localToWorld.Position.y + .1f || forwardPilar > gridHeight - .1f)
+                                showForwardFace = false;
+                        }
+
+                        var indexX = localToWorld.Position.x < cameraLtw.Position.x ? 1 : -1;
+                        if (pillarComponent.Cords.x + indexX is >= 0 and <= 63)
+                        {
+                            var rightPillar = pillarPositionBaked[GetIndex(pillarComponent.Cords.x + indexX, pillarComponent.Cords.y)];
+                            if (rightPillar >= localToWorld.Position.y + .1f
+                                || rightPillar >= gridHeight - .1f)
+                                showRightFace = false;
+                        }
+
+
+                        if (showForwardFace && showRightFace)
+                            materialMeshInfo = lodBakeData.MeshInfoUp[lodIndex];
+                        else if (showRightFace)
+                            materialMeshInfo = lodBakeData.MeshInfoUpRight[lodIndex];
+                        else if (showForwardFace)
+                            materialMeshInfo = lodBakeData.MeshInfoUpForward[lodIndex];
+                        else
+                        {
+                            var cornerPillar = pillarPositionBaked[GetIndex(pillarComponent.Cords.x + indexX, pillarComponent.Cords.y + indexZ)];
+                            if (cornerPillar >= localToWorld.Position.y + .1f
+                                || cornerPillar >= gridHeight - .1f)
+                                materialMeshInfo = lodBakeData.MeshInfoDown[lodIndex];
+                            else
+                                materialMeshInfo = lodBakeData.MeshInfoUpTop[lodIndex];
+                        }
+                    }
+                }).ScheduleParallel();
+            Dependency.Complete();
+            pillarPositionBaked.Dispose();
+        }
+
+
+
+
+
 
 
         private void UpdateDesiredHeight()
         {
             _timeRunning = 0;
 
-            new UpdateDesiredJob
-            {
-                Texture = FrequencyBandAnalyser.GetCurrentLevel().GetNextLevel(),
-                GridHeight = _gridMakerEnt.GridHeight,
-            }.Run();
 
-            GridManager2D.Instance.UpdateValidNodes(FrequencyBandAnalyser.GetCurrentLevel().GetCurrentLevel());
+            var texture = FrequencyBandAnalyser.GetCurrentLevel().GetNextLevel();
+            var gridHeight = _gridMakerComponent.GridHeight;
+            Entities
+                .WithReadOnly(texture)
+                .ForEach((ref PilarComponent pilarComponent) =>
+                {
+                    var index = GetIndex(pilarComponent.Cords.x, pilarComponent.Cords.y);
+                    pilarComponent.DesiredPos = texture[index] * gridHeight;
+                    pilarComponent.OldPos = pilarComponent.CurrentPos;
+                    pilarComponent.IsHighest = texture[index] > 0;
+                }).ScheduleParallel();
+
+            GridManager2D.UpdateValidNodes(FrequencyBandAnalyser.GetCurrentLevel().GetCurrentLevel());
             SysAgent.Instance.UpdatePathJobsLevel();
         }
-        
-        
-        [BurstCompile]
-        private partial struct UpdateDesiredJob : IJobEntity
-        {
-            public NativeArray<float> Texture;
-            public float GridHeight;
 
-            private void Execute(ref PilarComponent pilarComponent)
-            {
-                var index = GetIndex(pilarComponent.Cords.x, pilarComponent.Cords.y, 64);
-                pilarComponent.DesiredPos = Texture[index] * GridHeight;
-                pilarComponent.OldPos = pilarComponent.CurrentPos;
-                pilarComponent.IsHigh = Texture[index] > 0;
-            }
+
+        
+        private void SetLodData()
+        {
+            var pilarSpawner = SystemAPI.GetSingleton<PillarSpawnerComponent>();
+            _prefabEntity = pilarSpawner.PrefabEntity;
+
+           
+
+            _loDBakeData = new LoDData();
+            _loDBakeData.Init();
+            _loDBakeData.MeshInfoDown[0] = EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarDownLod0);
+            _loDBakeData.MeshInfoDown[1] = EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarDownLod1);
+
+
+            _loDBakeData.MeshInfoUp[0] = EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpLod0);
+            _loDBakeData.MeshInfoUp[1] = EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpLod1);
+
+            _loDBakeData.MeshInfoUpRight[0] =
+                EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpRightLod0);
+            _loDBakeData.MeshInfoUpRight[1] =
+                EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpRightLod1);
+
+            _loDBakeData.MeshInfoUpForward[0] =
+                EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpForwardLod0);
+            _loDBakeData.MeshInfoUpForward[1] =
+                EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpForwardLod1);
+
+
+            _loDBakeData.MeshInfoUpTop[0] =
+                EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpTopLod0);
+            _loDBakeData.MeshInfoUpTop[1] =
+                EntityManager.GetComponentData<MaterialMeshInfo>(pilarSpawner.PilarUpTopLod1);
         }
+
     }
+
+
 }

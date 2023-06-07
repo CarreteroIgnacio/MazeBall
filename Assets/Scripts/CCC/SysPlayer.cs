@@ -24,7 +24,7 @@ namespace CCC
     }
 
 
-    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    //[UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public partial class SysPlayer : SystemBase
     {
         private static readonly float FixedDeltaTime = 0.01666666f;
@@ -32,7 +32,6 @@ namespace CCC
         private static readonly PhysicsCategoryTags LevelCategory = new() { Category00 = true };
         private static readonly PhysicsCategoryTags PlayerCategory = new() { Category01 = true };
 
-        public static PlayerComponent playerComponentInstance;
 
         protected override void OnCreate()
         {
@@ -41,12 +40,22 @@ namespace CCC
 
         protected override void OnStartRunning()
         {
-            GameManager.Instance.LevelReset += ResetPlayer;
+            if (GameManager.Instance is null)
+            {
+                Debug.LogError("GameManager is Null");
+                Enabled = false;
+                return;
+            }
+            GameManager.LevelReset += ResetPlayer;
+            SystemManager.CollectableEvent += RepairIntegrity;
+            SystemManager.PauseEvent += PauseSystem;////
         }
 
+        private void PauseSystem(bool active) => Enabled = active;
         protected override void OnUpdate()
         {
-
+            if(!Enabled)return;
+            
             var playerInputs = InputManager.PlayerInputs;
             var jump = playerInputs.Jump;
             var dash = playerInputs.Dash;
@@ -54,20 +63,21 @@ namespace CCC
             var dir = (playerInputs.Wasd.y * CameraTrack.Instance.transform.forward).normalized;
 
             var playerComp = new PlayerComponent();
+            var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld.CollisionWorld;
 
-
+            
             var restitution = Mathf.Lerp(.5f, 0, playerInputs.Wasd.y);
             //Debug.Log(restitution);
             Entities
-                .WithoutBurst()
+                //.WithoutBurst()
                 .ForEach((ref PlayerComponent playerComponent, ref PhysicsVelocity physicsVelocity,
                     ref LocalToWorld localToWorld,
                     ref PhysicsMass physicsMass, ref PhysicsCollider physicsCollider) =>
                 {
 
                     physicsCollider.Value.Value.SetRestitution(restitution);
-                    var wtlMatrix = ((Matrix4x4)localToWorld.Value).inverse;
-                    var worldRot = Vector3.Cross(dir, Vector3.up).normalized;
+                    var wtlMatrix = localToWorld.Value.Inverted();
+                    var worldRot = Float3.Cross(dir, Float3.up).normalized();
                     var localRot = wtlMatrix.MultiplyVector(worldRot);
 
                     //
@@ -75,25 +85,33 @@ namespace CCC
                         localRot * (playerComponent.Speed * SystemAPI.Time.DeltaTime));
 
                     physicsVelocity.Angular =
-                        Vector3.ClampMagnitude(physicsVelocity.Angular, playerComponent.SpeedMagnitude);
+                        Float3.ClampMagnitude(physicsVelocity.Angular, playerComponent.SpeedMagnitude);
 
-                    playerComponent.JumpCurrentCd -= FixedDeltaTime;
-                    playerComponent.DashCurrentCd -= FixedDeltaTime;
+                    playerComponent.JumpCurrentCd -= SystemAPI.Time.fixedDeltaTime;
+                    playerComponent.DashCurrentCd -= SystemAPI.Time.fixedDeltaTime;
                     if (jump) Jump(ref playerComponent, ref physicsVelocity, ref physicsMass);
                     if (dash)
                         Dash(ref playerComponent, ref localToWorld, ref physicsVelocity, ref physicsMass, localRot);
 
 
                     LooseAir(ref playerComponent);
-                    GainEnergy(ref playerComponent, ref physicsVelocity, ref localToWorld);
+                    GainEnergy(ref playerComponent, ref physicsVelocity, ref localToWorld, ref collisionWorld);
 
 
                     playerComp = playerComponent;
                 })
                 .Run();
+            
+            if (playerComp.Health < 0)
+            {
+                playerComp.Health = 0;
+                GameManager.OnGameOver();
+            }
 
-            playerComponentInstance = playerComp;
-            //CanvasManager.Instance.SetGUI(playerComp);
+            if (playerComp.IsGrounded)
+            {
+                GameManager.Instance.AddPoints(playerComp.PointsThisFrame);
+            }
         }
 
 
@@ -102,29 +120,24 @@ namespace CCC
             playerComponent.Health -= FixedDeltaTime *
                                       (1 - (playerComponent.Integrity / playerComponent.MaxIntegrity)) *
                                       playerComponent.AirLooseMultiplier;
-
-
-            if (playerComponent.Health < 0)
-            {
-                playerComponent.Health = 0;
-                GameManager.Instance.OnGameOver();
-            }
         }
 
-        private void GainEnergy(ref PlayerComponent playerComponent, ref PhysicsVelocity physicsVelocity,
-            ref LocalToWorld localToWorld)
+        private static void GainEnergy(ref PlayerComponent playerComponent, ref PhysicsVelocity physicsVelocity,
+            ref LocalToWorld localToWorld, ref CollisionWorld collisionWorld)
         {
-            if (!RayCastToFloor(localToWorld.Position)) return;
+            playerComponent.IsGrounded = RayCastToFloor(localToWorld.Position, ref collisionWorld);
+            if (!playerComponent.IsGrounded) return;
 
-            var amount = ((Vector3)(physicsVelocity.Linear)).magnitude;
+            var amount = physicsVelocity.Linear.magnitude();
             playerComponent.Energy += FixedDeltaTime * amount *
                                       playerComponent.EnergyGainMultiplier;
 
 
             if (playerComponent.Energy > playerComponent.MaxEnergy)
                 playerComponent.Energy = playerComponent.MaxEnergy;
-            
-            GameManager.Instance.AddPoints(amount);
+
+            playerComponent.PointsThisFrame = amount;
+
         }
 
         private static void Jump(ref PlayerComponent playerComponent, ref PhysicsVelocity physicsVelocity,
@@ -136,66 +149,66 @@ namespace CCC
             if (playerComponent.JumpCurrentCd > 0) return;
 
 
-            playerComponent.JumpCurrentCd = playerComponent.JumpColdown;
+            playerComponent.JumpCurrentCd = playerComponent.JumpCooldown;
             playerComponent.Energy -= playerComponent.JumpCost;
 
             physicsVelocity.ApplyLinearImpulse(physicsMass, new float3(0, playerComponent.JumpForce, 0));
         }
 
         private static void Dash(ref PlayerComponent playerComponent, ref LocalToWorld localToWorld,
-            ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass, Vector3 dir)
+            ref PhysicsVelocity physicsVelocity, ref PhysicsMass physicsMass, float3 dir)
         {
 
             if (playerComponent.Energy < playerComponent.DashCost) return;
             if (playerComponent.DashCurrentCd > 0) return;
 
-            playerComponent.DashCurrentCd = playerComponent.DashColdown;
+            playerComponent.DashCurrentCd = playerComponent.DashCooldown;
             playerComponent.Energy -= playerComponent.DashCost;
 
-
-            Matrix4x4 ltwMatrix = localToWorld.Value;
-            var worldAngular = ltwMatrix.MultiplyVector(physicsVelocity.Angular);
-            var worldForward = Vector3.Cross(Vector3.up, worldAngular).normalized;
-            //worldForward.y += .05f;
+            
+            var worldAngular = localToWorld.Value.MultiplyVector(physicsVelocity.Angular);
+            var worldForward = Float3.Cross(Float3.up, worldAngular).normalized();
             physicsVelocity.ApplyLinearImpulse(physicsMass, worldForward * playerComponent.DashForce);
         }
 
 
-        public void TakeDamage(float amount, Vector3 agentPos, Vector3 playerPos)
+        public void TakeDamage(float amount, float3 agentPos)
         {
             CameraTrack.Instance.RunCameraNoise();
 
 
-            var dir = agentPos - playerPos;
-            dir.Normalize();
-            if (!LeakPool.Instance.CreateLeak(playerPos, dir)) return;
+            
 
-            var currentIntegrity = new float();
+            var dir = new float3();
+            var currentIntegrity = new float();// cualquiera el timer para recibir daño lo maneja el leak xd
+            if (!LeakPool.Instance.CreateLeak(dir)) return;
             Entities
                 .ForEach((ref PlayerComponent playerComponent, ref PhysicsVelocity physicsVelocity,
-                    ref PhysicsMass physicsMass) =>
+                    ref PhysicsMass physicsMass, in LocalToWorld localToWorld) =>
                 {
-                    physicsVelocity.ApplyLinearImpulse(physicsMass, -dir / 2);
+                    dir = (agentPos - localToWorld.Position).normalized();;
+                    physicsVelocity.ApplyLinearImpulse(physicsMass, -dir);
                     playerComponent.Integrity -= amount;
                     if (playerComponent.Integrity < 0)
                         playerComponent.Integrity = 0;
                     currentIntegrity = playerComponent.Integrity / playerComponent.MaxIntegrity;
                 }).Run();
+            
             //CanvasManager.Instance.SetIntegrityBarGUI(currentIntegrity);
         }
 
-        public void RepairIntegrity(float repair, float air, float energy)
+        public void RepairIntegrity(CollectableComponent collectableComponent)
         {
             var integrityCoef = 0f;
             Entities
                 .ForEach((ref PlayerComponent playerComponent) =>
                 {
-                    playerComponent.Integrity += repair;
+                    playerComponent.Integrity += collectableComponent.Healing;
                     if (playerComponent.Integrity > playerComponent.MaxIntegrity)
                         playerComponent.Integrity = playerComponent.MaxIntegrity;
 
 
-                    playerComponent.Health += air;
+                    playerComponent.Health += collectableComponent.Air;
                     if (playerComponent.Health > playerComponent.MaxHealth)
                         playerComponent.Health = playerComponent.MaxHealth;
                     _ = playerComponent.Health / playerComponent.MaxHealth;
@@ -203,7 +216,7 @@ namespace CCC
                     integrityCoef = playerComponent.Integrity / playerComponent.MaxIntegrity;
 
 
-                    playerComponent.Energy += energy;
+                    playerComponent.Energy += collectableComponent.Energy;
                     if (playerComponent.Energy > playerComponent.MaxEnergy)
                         playerComponent.Energy = playerComponent.MaxEnergy;
 
@@ -236,7 +249,7 @@ namespace CCC
            
         }
 
-        private bool RayCastToFloor(float3 start)
+        private static bool RayCastToFloor(float3 start, ref CollisionWorld collisionWorld)
         {
             var end = start - new float3(0, .6f, 0);
             var colFilter = new CollisionFilter
@@ -254,11 +267,11 @@ namespace CCC
                 Filter = colFilter
             };
 
-            var collisionWorld = SystemAPI.GetSingleton<PhysicsWorldSingleton>().PhysicsWorld.CollisionWorld;
+            
             collisionWorld.CastRay(rayInput, out var hit);
 
             Debug.DrawLine(start, end, Color.red);
-            return EntityManager.HasComponent<PilarComponent>(hit.Entity);
+            return hit.Entity != Entity.Null;
         }
     }
 }

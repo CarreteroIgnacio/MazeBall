@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{52ac5363-d454-234f-1a7d-ea80ebd29607}</ProjectGuid>
+    <ProjectGuid>{cd65a9f1-22b2-83de-1ade-58642ca394bf}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,7 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor\Internals\Properties\Unity.Properties.Internals.asmref" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor\Internals\Properties\Unity.Properties.Internals.asmref" />
      <None Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\Unity.Properties.asmdef" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\PropertyBags\Internal" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime" />
@@ -51,7 +51,7 @@
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\Properties" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\Reflection" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\Algorithms" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor\Internals\Properties" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor\Internals\Properties" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\Utility" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\PropertyVisitors\Adapters" />
      <Folder Include="Library\PackageCache\com.unity.properties@2.1.0-exp.3\Runtime\PropertyVisitors" />

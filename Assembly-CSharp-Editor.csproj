@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6707d8a1-9bd2-2b37-17f4-d8d1032140a6}</ProjectGuid>
+    <ProjectGuid>{50ea1f62-6d7d-8452-9381-b7ae0de42700}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,7 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.serialization@3.0.0-pre.1\Editor" />
+     <Folder Include="Library\PackageCache\com.unity.serialization@3.1.1\Editor" />
      <Folder Include="Library\PackageCache\com.unity.platforms@1.0.0-exp.6\Editor" />
      <Folder Include="Library\PackageCache\com.unity.platforms@1.0.0-exp.6\Tests\Editor" />
      <Reference Include="UnityEngine">

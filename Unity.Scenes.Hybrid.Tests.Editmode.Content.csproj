@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{c34fffb3-fa2b-524c-76f4-2a26964966aa}</ProjectGuid>
+    <ProjectGuid>{2a51843f-f3e0-5f4c-83d0-557a487d56ce}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,8 +41,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Hybrid.Tests\Editmode\Content\Unity.Scenes.Hybrid.Tests.Editmode.Content.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Hybrid.Tests\Editmode\Content" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Hybrid.Tests\Editmode\Content\Unity.Scenes.Hybrid.Tests.Editmode.Content.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Hybrid.Tests\Editmode\Content" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

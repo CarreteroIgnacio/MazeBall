@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{d249963b-1ee5-6927-279b-cbc28c53c6cb}</ProjectGuid>
+    <ProjectGuid>{42f44dbd-e918-0e31-bce8-3fdb0bbd0a9f}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -26,7 +26,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\Unity.Entities\</OutputPath>
-    <DefineConstants>UNITY_2022_3_0;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2022_3_0;UNITY_2022_3;UNITY_2022;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;UNITY_PHYSICS_CUSTOM;UNITY_2022_2_14F1_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169,0649</NoWarn>
@@ -43,266 +43,271 @@
   <ItemGroup>
     <Analyzer Include="D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.SystemAPI.QueryBuilder.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.SystemAPI.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.LambdaJobs.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.Common.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.SystemAPI.Query.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.AspectGenerator.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.Common.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.EntityQueryBulkOperations.dll" />
-    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.JobEntityGenerator.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.SystemAPI.QueryBuilder.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.SystemAPI.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.LambdaJobs.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.Common.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.SystemAPI.Query.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.Analyzer.CodeFixes.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.AspectGenerator.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.Common.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.SystemGenerator.EntityQueryBulkOperations.dll" />
+    <Analyzer Include="E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators\Unity.Entities.SourceGen.JobEntityGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+ComponentTypeViewArray.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\IComponentData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityManagerDiffer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SystemBaseRegistry.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\World.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\UnsafeStack.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\DynamicBlobAssetBatch.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\RefRO.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\DefaultLocationService.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\WorldUpdateAllocator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\AspectTypes.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ScratchpadAllocator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\BlockAllocator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\ChunkDataGatherJobs.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityStorageInfoLookup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+RecordViewArrayUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\EntityPrefabReference.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferClearMissingReferences.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\Archetype.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\ContentDeliveryService.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityComponentStoreCreateDestroyEntities.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Ordering.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentCatalog.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+SystemView.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityCommandBufferSystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DOTSCompilerPatchedMethodAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\BufferHeader.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Enumerable.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\ComponentLookup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentCatalogDataUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\StructuralChangesProfiler+StaticData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DefaultWorldInitialization.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityQueryFilter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ManagedComponentStore.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EnabledMask.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\TypeManagerFieldInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\TypeManagerAspects.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ComponentSystemBase.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityBatchInChunk.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SystemAPI.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\TimeData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\BufferAllocator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityQuery.interop.gen.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\LiveConversionSettings.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\EntitySceneReference.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDiffer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\BurstCompatibleTypes.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+DataTag.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityDataAccess.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityChangeSet.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\WorldSystemFiltering.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\Compression\Codec.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityQuery.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityRemapUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\StructuralChangesProfiler+TimeCounter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\UnsafeChunkCache.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\RetainBlobAssetSystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Properties\ManagedObjectRemap.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\ContentDownloadService.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\DynamicBuffer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferEntityInChunkChanges.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\WeakObjectReference.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\RegisterGenericComponentTypeAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SystemState.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\ManagedObjectBinarySerialization.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+WorldData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\LambdaJobConstruction\UniversalDelegates.gen.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\ChunkIterationUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+WorldView.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+ComponentTypeView.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EnabledRefRO.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\AspectTypeInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\AssemblyInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\BakingVersionAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Properties\ManagedObjectBlobs.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DebuggerDataAccess.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityNameStorage.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DefaultWorldInitializationProxy.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\RuntimeGlobalObjectId.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Stubs\Unity\Debug.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\Entity.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\AlwaysUpdateSystemAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityCommandBuffer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+FixedComponentTypeDataList.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\IRuntimeCatalogDataSource.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\MemoryProfiler+ArchetypeMemoryData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\SerializeUtilityToYaml.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\TypeManagerSystems.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DisallowRefReturnCrossingThisAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ECBInterop.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ChunkListMap.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\AlwaysSynchronizeSystemAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\StructuralChangesProfiler+Recorder.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferValidation.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferArchetypeChanges.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\RuntimeApplication.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ExclusiveEntityTransaction.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Properties\ManagedObjectEquals.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\ArchetypeChunkData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\ComponentTypeSet.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentSystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\StructuralChangesProfiler.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+SystemData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\RateUtils.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\MemoryProfiler+BytesCounter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\WorldTime.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\LambdaJobConstruction\LambdaJobDescription.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityManagerExclusiveEntityTransaction.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\QueryEnumerable\QueryEnumerable.gen.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityComponentStoreChunk.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityPatcher.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\BlobsDebug.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\ComponentTypeInArchetype.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+RecordViewArray.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentManagerUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\RemoteContentId.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\StructuralChange.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\ComponentType.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+ArchetypeData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferComponentChanges.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityPatcherBlobs.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\InternalCompilerInterface\InternalCompilerInterface.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SortingUtilities.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityQueryBuilder.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DOTSCompilerGeneratedAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\WorldUnmanagedImpl.Memory.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\SpinLock.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\Chunk.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+State.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+RecordType.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\WorldDebuggingTools.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\DotsSerialization.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ChangeVersionUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+EntityViewArray.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\RemoteContentLocation.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ChunkDataUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\AspectTypeInfoManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentCatalogData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\TypeHash.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\WeakReferenceId.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\CalculateReaderWriterDependency.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ComponentSystemSorter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\Hashes\XXHash.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\InternalCompilerInterface\InternalCompilerInterface_RunMethods_RT.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\InternalCompilerInterface\InternalCompilerInterface_RunMethods_NotRT.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Static.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\LambdaJobConstruction\LambdaJobQueryConstructionMethods.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Blobs.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\TypeManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Properties\ManagedObjectClone.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\ContentDeliveryGlobalState.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\AssemblyInfo.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityQueryManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Preferences.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityManagerDebug.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ForeachQueryEnumerable.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\WeakObjectSceneReference.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\RuntimeContentManagerProfiler.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\RefRW.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+StaticData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\AspectType.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\EntityArchetype.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\MemoryProfiler.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SystemAPIQueryBuilder.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityComponentStoreDebug.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\YamlWriter.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferCopyAndReplace.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\ArchetypeChunkArray.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Header.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ApiCompatibilityLevelTest.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DebugView.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\StructuralChangesProfiler+StructuralChangesData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\FastEquality.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\GenerateBurstMonoInteropAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+RecordView.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\Hash128.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\CopyUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ScriptBehaviourUpdateOrder.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SystemDependencySafetyUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EntityQueryEnumerator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Record.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ComponentSafetyHandles.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\BufferAllocatorHeap.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\BufferLookup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ISystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityComponentStore.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\EnabledRefRW.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Stubs\Unity.Assertions\Assert.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\CleanupEntity.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\StructuralChangesProfiler+StructuralChangeType.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\SharedComponentValues.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityComponentStoreCreateArchetype.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+EntityView.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\RequireMatchingQueriesForUpdateAttribute.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\SerializeUtility.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\BlobBuilder.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ComponentDependencyManager.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization\BinarySerialization.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+FrameCountSystem.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Utilities.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\UnsafeCircularBuffer.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\EntityDebugProxy.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types\SceneTagComponent.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\DefaultWorld.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ComponentSystemGroup.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityInChunk.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules\EntitiesProfiler+ComponentTypeData.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ECBInterop.interop.gen.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\WorldUnmanaged.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff\EntityDifferBlobs.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SystemBase.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\IJobEntity.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityCommandBufferDebug.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\IJobChunk.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery\ContentLocationService.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators\ChunkEntityEnumerator.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling\EntitiesJournaling+Export.cs" />
-     <Compile Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\EntityComponentStoreChangeArchetype.cs" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\ProfilerModules" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\Hashes" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Stubs\Unity" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Stubs\Unity.Assertions" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\QueryEnumerable\QueryEnumerable.tt" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Unity.Entities.asmdef" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Properties" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content\Delivery" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Types" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\QueryEnumerable" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Diff" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\LambdaJobConstruction\UniversalDelegates.tt" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\SourceGenerators" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\InternalCompilerInterface" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Content" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Stubs" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Serialization" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\LambdaJobConstruction" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Iterators" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\Compression" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Core\Unity.Core.asmref" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities\Journaling" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+ComponentTypeViewArray.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\IComponentData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityManagerDiffer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SystemBaseRegistry.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\World.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\UnsafeStack.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\DynamicBlobAssetBatch.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\RefRO.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\DefaultLocationService.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\WorldUpdateAllocator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\AspectTypes.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ScratchpadAllocator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\BlockAllocator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\ChunkDataGatherJobs.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EntityStorageInfoLookup.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+RecordViewArrayUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\EntityPrefabReference.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferClearMissingReferences.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\Archetype.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\ContentDeliveryService.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityComponentStoreCreateDestroyEntities.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Ordering.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentCatalog.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+SystemView.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityCommandBufferSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DOTSCompilerPatchedMethodAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\BufferHeader.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Enumerable.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\ComponentLookup.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentCatalogDataUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\StructuralChangesProfiler+StaticData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Internal\InternalCompilerInterface_RunMethods_NotRT.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DefaultWorldInitialization.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EntityQueryFilter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ManagedComponentStore.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EnabledMask.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\TypeManagerFieldInfo.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\TypeManagerAspects.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ComponentSystemBase.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityBatchInChunk.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SystemAPI.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\TimeData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\BufferAllocator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EntityQuery.interop.gen.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Internal\InternalEntityQueryEnumerator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\LiveConversionSettings.cs" />
+     <Compile Include="Assets\Scripts\Entities Data\ComponentData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\EntitySceneReference.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDiffer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\BurstCompatibleTypes.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+DataTag.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityDataAccess.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityChangeSet.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\WorldSystemFiltering.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\Compression\Codec.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EntityQuery.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityRemapUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\StructuralChangesProfiler+TimeCounter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\RetainBlobAssetSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Properties\ManagedObjectRemap.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\ContentDownloadService.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\DynamicBuffer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferEntityInChunkChanges.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\WeakObjectReference.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\RegisterGenericComponentTypeAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SystemState.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\ManagedObjectBinarySerialization.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+WorldData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\RegisterGenericSystemTypeAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\LambdaJobConstruction\UniversalDelegates.gen.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\ChunkIterationUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+WorldView.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+ComponentTypeView.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EnabledRefRO.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\AspectTypeInfo.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\AssemblyInfo.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\BakingVersionAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Properties\ManagedObjectBlobs.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DebuggerDataAccess.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityNameStorage.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DefaultWorldInitializationProxy.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\RuntimeGlobalObjectId.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Stubs\Unity\Debug.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\Entity.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\AlwaysUpdateSystemAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityCommandBuffer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+FixedComponentTypeDataList.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\IRuntimeCatalogDataSource.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\MemoryProfiler+ArchetypeMemoryData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Internal\InternalGatherEntitiesResult.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\SerializeUtilityToYaml.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\TypeManagerSystems.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DisallowRefReturnCrossingThisAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ECBInterop.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ChunkListMap.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\AlwaysSynchronizeSystemAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\StructuralChangesProfiler+Recorder.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferValidation.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferArchetypeChanges.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\RuntimeApplication.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ExclusiveEntityTransaction.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Properties\ManagedObjectEquals.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\ArchetypeChunkData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\ComponentTypeSet.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\StructuralChangesProfiler.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+SystemData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\RateUtils.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\MemoryProfiler+BytesCounter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\WorldTime.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\LambdaJobConstruction\LambdaJobDescription.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityManagerExclusiveEntityTransaction.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\QueryEnumerable\QueryEnumerable.gen.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityComponentStoreChunk.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityPatcher.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\BlobsDebug.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\ComponentTypeInArchetype.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+RecordViewArray.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentManagerUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\RemoteContentId.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\StructuralChange.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\ComponentType.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+ArchetypeData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferComponentChanges.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityPatcherBlobs.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SortingUtilities.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EntityQueryBuilder.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DOTSCompilerGeneratedAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\WorldUnmanagedImpl.Memory.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\SpinLock.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\Chunk.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+State.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+RecordType.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\WorldDebuggingTools.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\DotsSerialization.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ChangeVersionUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+EntityViewArray.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\RemoteContentLocation.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ChunkDataUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\AspectTypeInfoManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentCatalogData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\TypeHash.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\WeakReferenceId.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\CalculateReaderWriterDependency.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ComponentSystemSorter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\Hashes\XXHash.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Static.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\LambdaJobConstruction\LambdaJobQueryConstructionMethods.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Blobs.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\TypeManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Properties\ManagedObjectClone.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\ContentDeliveryGlobalState.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\AssemblyInfo.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EntityQueryManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Preferences.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityManagerDebug.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ForeachQueryEnumerable.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\WeakObjectSceneReference.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\RuntimeContentManagerProfiler.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\RefRW.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+StaticData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\AspectType.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\EntityArchetype.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\MemoryProfiler.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SystemAPIQueryBuilder.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityComponentStoreDebug.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\YamlWriter.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferCopyAndReplace.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\ArchetypeChunkArray.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Header.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ApiCompatibilityLevelTest.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DebugView.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\StructuralChangesProfiler+StructuralChangesData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\FastEquality.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\GenerateBurstMonoInteropAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+RecordView.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\Hash128.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\CopyUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ScriptBehaviourUpdateOrder.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SystemDependencySafetyUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Record.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ComponentSafetyHandles.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\BufferAllocatorHeap.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\BufferLookup.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ISystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityComponentStore.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\EnabledRefRW.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Stubs\Unity.Assertions\Assert.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\CleanupEntity.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\StructuralChangesProfiler+StructuralChangeType.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\SharedComponentValues.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityComponentStoreCreateArchetype.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+EntityView.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\RequireMatchingQueriesForUpdateAttribute.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\SerializeUtility.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\BlobBuilder.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ComponentDependencyManager.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\UnsafeChunkCacheIterator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization\BinarySerialization.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+FrameCountSystem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Utilities.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\UnsafeCircularBuffer.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\EntityDebugProxy.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types\SceneTagComponent.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\DefaultWorld.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ComponentSystemGroup.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityInChunk.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules\EntitiesProfiler+ComponentTypeData.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ECBInterop.interop.gen.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\WorldUnmanaged.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff\EntityDifferBlobs.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SystemBase.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\IJobEntity.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityCommandBufferDebug.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\IJobChunk.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery\ContentLocationService.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Internal\InternalCompilerInterface_RunMethods_RT.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Internal\InternalCompilerInterface.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators\ChunkEntityEnumerator.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling\EntitiesJournaling+Export.cs" />
+     <Compile Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\EntityComponentStoreChangeArchetype.cs" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\ProfilerModules" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\Hashes" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Stubs\Unity" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Stubs\Unity.Assertions" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\QueryEnumerable\QueryEnumerable.tt" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Unity.Entities.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Properties" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content\Delivery" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Types" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\QueryEnumerable" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Diff" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\LambdaJobConstruction\UniversalDelegates.tt" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\SourceGenerators" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Internal" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Content" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Stubs" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Serialization" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\LambdaJobConstruction" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Iterators" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\Compression" />
+     <Folder Include="Assets\Scripts\Entities Data" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Core\Unity.Core.asmref" />
+     <None Include="Assets\Scripts\Entities Data\EntitiesData.asmref" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities\Journaling" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
@@ -559,13 +564,13 @@
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
      </Reference>
      <Reference Include="Unity.Collections.LowLevel.ILSupport">
-     <HintPath>E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.collections@2.1.0-pre.18\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+     <HintPath>E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.collections@2.1.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
      </Reference>
      <Reference Include="nunit.framework">
-     <HintPath>E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.ext.nunit@2.0.3\net40\unity-custom\nunit.framework.dll</HintPath>
+     <HintPath>E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.ext.nunit@2.0.3\net40\unity-custom\nunit.framework.dll</HintPath>
      </Reference>
      <Reference Include="Mono.Cecil">
-     <HintPath>E:\Documents\Game-Dev\Current-Projects\MazeBall v0.1\Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
+     <HintPath>E:\Documents\Game-Dev\Current-Projects\MazeBallURP\Library\PackageCache\com.unity.nuget.mono-cecil@1.11.4\Mono.Cecil.dll</HintPath>
      </Reference>
      <Reference Include="netstandard">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -936,35 +941,35 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.Collections.csproj">
-      <Project>{059b5348-ec92-4322-1a9e-3f633ebf6274}</Project>
+      <Project>{a07273e5-5165-1e8c-d649-7f59bad7cdde}</Project>
       <Name>Unity.Collections</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
-      <Project>{42ba4f18-da67-ddb8-9ba9-c857508774ed}</Project>
+      <Project>{d3e34fc3-97bd-e63c-1809-e6356a981824}</Project>
       <Name>Unity.Burst</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.csproj">
-      <Project>{a1499272-e2f7-1211-24c8-a5cffee8e603}</Project>
+      <Project>{a0699b25-c36b-4c13-1400-62e132244e49}</Project>
       <Name>Unity.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mathematics.Extensions.csproj">
-      <Project>{3526e1c1-32ac-79cf-8b49-8488d1f0d7e3}</Project>
+      <Project>{0cf75ac7-5b49-9b97-7f80-139319ef1881}</Project>
       <Name>Unity.Mathematics.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Serialization.csproj">
-      <Project>{89018bac-6c2d-53c9-c7bd-975ded7da249}</Project>
+      <Project>{a15e8973-f0ac-40c8-cba4-38bec11a609d}</Project>
       <Name>Unity.Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Profiling.Core.csproj">
-      <Project>{eee0cbfa-a3b6-ecf6-a488-c9066af32d48}</Project>
+      <Project>{ab8a9f3c-7e23-f454-6a08-ec0a3ef30933}</Project>
       <Name>Unity.Profiling.Core</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{74994b71-d330-056d-2f6b-9f2a54480236}</Project>
+      <Project>{f5cb0c4b-3446-cc7c-2b89-c0ec3a652123}</Project>
       <Name>UnityEditor.UI</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{4d8fe71c-033a-68c2-fdd5-0cc9b5752daf}</Project>
+      <Project>{b4d7115c-830e-3812-880e-2889eb1cba0b}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
   </ItemGroup>

@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{27150309-7363-3fa4-5d6b-eee975c8af9e}</ProjectGuid>
+    <ProjectGuid>{09935319-cbcb-1468-f626-ef3bf7668808}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,9 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.physics@1.0.0-pre.65\Tests\EditModeTests" />
-     <Folder Include="Library\PackageCache\com.unity.physics@1.0.0-pre.65\Tests\EditModeTests\Authoring" />
-     <None Include="Library\PackageCache\com.unity.physics@1.0.0-pre.65\Tests\EditModeTests\Unity.Physics.EditModeTests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.physics@1.0.10\Tests\EditModeTests" />
+     <Folder Include="Library\PackageCache\com.unity.physics@1.0.10\Tests\EditModeTests\Authoring" />
+     <None Include="Library\PackageCache\com.unity.physics@1.0.10\Tests\EditModeTests\Unity.Physics.EditModeTests.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

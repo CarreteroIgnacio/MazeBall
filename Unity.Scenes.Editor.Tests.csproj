@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{948601bc-9041-ab73-d377-1b82c2c60573}</ProjectGuid>
+    <ProjectGuid>{fbe4a8c9-dd26-1589-10f2-7aa4bb6d7d57}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,12 +41,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor.Tests\Assets\SceneWithMaterialDependency" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor.Tests" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor.Tests\Content" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor.Tests\Assets" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor.Tests\Assets\SceneWithTextureDependency" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Scenes.Editor.Tests\Unity.Scenes.Editor.Tests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor.Tests\Assets\SceneWithMaterialDependency" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor.Tests" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor.Tests\Content" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor.Tests\Assets" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor.Tests\Assets\SceneWithTextureDependency" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Scenes.Editor.Tests\Unity.Scenes.Editor.Tests.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

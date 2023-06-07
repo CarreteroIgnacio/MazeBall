@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd36713168442b043bb728c729ad5ba7, type: 3}
   m_Name: Villain
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 50
   heightMapList:
   - {fileID: 1997870075, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
   - {fileID: -1190195539, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
@@ -31,12 +31,12 @@ MonoBehaviour:
   - {fileID: -1821607750, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
   - {fileID: 557156952, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
   clip: {fileID: 8300000, guid: ee89bb84ce68f5042b3fcb11d46a9819, type: 3}
-  northColor: {r: 1, g: 0, b: 0.8657131, a: 0}
+  northColor: {r: 0.5, g: 0, b: 0.4333334, a: 0}
   eastColor: {r: 0.617486, g: 0, b: 1, a: 0}
   southColor: {r: 0, g: 0.4505098, b: 1, a: 0}
   westColor: {r: 0, g: 0.67504406, b: 1, a: 0}
-  acuteColorShader: {r: 1, g: 0, b: 0.6649213, a: 0}
-  graveColorShader: {r: 0, g: 0.41884828, b: 1, a: 0}
+  acuteColorShader: {r: 0.5, g: 0, b: 0.33333325, a: 0}
+  graveColorShader: {r: 0, g: 0.20980394, b: 0.5, a: 0}
   maxVolume: 0.613
   speedLerp: 10
   smoothDownRate: 5

@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{51259a1d-4ee5-d81c-9420-1759d170d399}</ProjectGuid>
+    <ProjectGuid>{52806aa9-f64d-ed13-0005-bd375a09fce8}</ProjectGuid>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -41,13 +41,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests\Prefabs" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests\Conversion\Incremental" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests\Conversion" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests\Runtime" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests" />
-     <Folder Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests\Baking" />
-     <None Include="Library\PackageCache\com.unity.entities@1.0.0-pre.65\Unity.Entities.Hybrid.Tests\Unity.Entities.Hybrid.Tests.asmdef" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests\Prefabs" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests\Conversion\Incremental" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests\Conversion" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests\Runtime" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests" />
+     <Folder Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests\Baking" />
+     <None Include="Library\PackageCache\com.unity.entities@1.0.10\Unity.Entities.Hybrid.Tests\Unity.Entities.Hybrid.Tests.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>D:\Unity Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

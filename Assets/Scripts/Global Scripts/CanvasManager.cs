@@ -43,8 +43,8 @@ public partial class CanvasManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.GameOver += ShowTotalPoints;
-        GameManager.Instance.LevelReset += HideotalPoints;
+        GameManager.GameOver += ShowTotalPoints;
+        GameManager.LevelReset += HideotalPoints;
     }
 
     private void Update() => pointText.text = GameManager.Instance.CurrentPoints.ToString("F0");
@@ -140,20 +140,20 @@ public partial class CanvasManager : MonoBehaviour
 
 
         UpdateButtonsPowers(dashTimer,
-            playerComponent.DashCurrentCd / playerComponent.DashColdown,
+            playerComponent.DashCurrentCd / playerComponent.DashCooldown,
             playerComponent.Energy,
             playerComponent.DashCost
         );
 
         UpdateButtonsPowers(jumpTimer,
-            playerComponent.JumpCurrentCd / playerComponent.JumpColdown,
+            playerComponent.JumpCurrentCd / playerComponent.JumpCooldown,
             playerComponent.Energy,
             playerComponent.JumpCost
         );
     
 
         jumpTimer[3].fillAmount =  Mathf.Clamp01( 
-            playerComponent.JumpCurrentCd / playerComponent.JumpColdown );
+            playerComponent.JumpCurrentCd / playerComponent.JumpCooldown );
             
             
         
