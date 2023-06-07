@@ -1,0 +1,397 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpeakerPlaneMat
+  m_Shader: {fileID: -6465566751694194690, guid: f3462673672d535479448a30a9a51207, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _DISABLE_SSR_TRANSPARENT
+  - _DISABLE_SSR_TRANSPARENT
+  m_InvalidKeywords:
+  - _NORMALMAP_TANGENT_SPACE
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2225
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  - TransparentBackface
+  - RayTracingPrepass
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AnisotropyMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BentNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BentNormalMapOS:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoatMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IridescenceMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IridescenceThicknessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMapOS:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SubsurfaceMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TangentMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TangentMapOS:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ThicknessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TransmissionMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TransmittanceColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Acute: 0
+    - AcuteMul: 5.27
+    - Acute_1: 1
+    - Grave: 0
+    - GraveMul: 8.17
+    - Iridescence_MaskMul: 1
+    - Iridescence_Thickness: 1
+    - MaxDistance: 64
+    - MinDistance: 0
+    - NormalStrength: 1
+    - Overall: 2467
+    - OverallMul: 0
+    - Vector1_1: 1000
+    - Vector1_2: 0
+    - Vector1_4be343e4574e4d00811318176253085a: 0
+    - Vector1_9e9ee8e459724f108aa95b7740e2a34d: 1
+    - WaveStrength: 1
+    - WaveStrength_1: -37.5
+    - WaveStrength_2: 0
+    - WaveStrength_3: -2
+    - WaveStrength_4: 0
+    - _AORemapMax: 1
+    - _AORemapMin: 0
+    - _ATDistance: 1
+    - _AddPrecomputedVelocity: 0
+    - _AlbedoAffectEmissive: 0
+    - _AlphaCutoff: 0.5
+    - _AlphaCutoffEnable: 0
+    - _AlphaCutoffPostpass: 0.5
+    - _AlphaCutoffPrepass: 0.5
+    - _AlphaCutoffShadow: 0.5
+    - _AlphaDstBlend: 0
+    - _AlphaRemapMax: 1
+    - _AlphaRemapMin: 0
+    - _AlphaSrcBlend: 1
+    - _Anisotropy: 0
+    - _BlendMode: 0
+    - _CoatMask: 0
+    - _ConservativeDepthOffsetEnable: 0
+    - _CullMode: 2
+    - _CullModeForward: 2
+    - _Cutoff: 0.5
+    - _DepthOffsetEnable: 0
+    - _DetailAlbedoScale: 1
+    - _DetailNormalScale: 1
+    - _DetailSmoothnessScale: 1
+    - _DiffusionProfile: 0
+    - _DiffusionProfileHash: 2.616129
+    - _DisplacementLockObjectScale: 1
+    - _DisplacementLockTilingScale: 1
+    - _DisplacementMode: 0
+    - _DoubleSidedEnable: 0
+    - _DoubleSidedGIMode: 0
+    - _DoubleSidedNormalMode: 1
+    - _DstBlend: 0
+    - _EmissiveColorMode: 1
+    - _EmissiveExposureWeight: 1
+    - _EmissiveIntensity: 1
+    - _EmissiveIntensityUnit: 0
+    - _EnableBlendModePreserveSpecularLighting: 1
+    - _EnableFogOnTransparent: 1
+    - _EnableGeometricSpecularAA: 0
+    - _EnergyConservingSpecularColor: 1
+    - _Frecuency: 1
+    - _HeightAmplitude: 0.02
+    - _HeightCenter: 0.5
+    - _HeightMapParametrization: 0
+    - _HeightMax: 1
+    - _HeightMin: -1
+    - _HeightOffset: 0
+    - _HeightPoMAmplitude: 2
+    - _HeightTessAmplitude: 2
+    - _HeightTessCenter: 0.5
+    - _InvTilingScale: 1
+    - _Ior: 1.5
+    - _IridescenceMask: 1
+    - _IridescenceThickness: 1
+    - _LinkDetailsWithBase: 1
+    - _MaterialID: 1
+    - _Metallic: 0
+    - _MetallicRemapMax: 1
+    - _MetallicRemapMin: 0
+    - _NormalMapSpace: 0
+    - _NormalScale: 1
+    - _ObjectSpaceUVMapping: 0
+    - _ObjectSpaceUVMappingEmissive: 0
+    - _OpaqueCullMode: 2
+    - _PPDLodThreshold: 5
+    - _PPDMaxSamples: 15
+    - _PPDMinSamples: 5
+    - _PPDPrimitiveLength: 1
+    - _PPDPrimitiveWidth: 1
+    - _RayTracing: 0
+    - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 0
+    - _RefractionModel: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
+    - _Smoothness: 0.5
+    - _SmoothnessRemapMax: 1
+    - _SmoothnessRemapMin: 0
+    - _SpecularAAScreenSpaceVariance: 0.1
+    - _SpecularAAThreshold: 0.2
+    - _SpecularOcclusionMode: 1
+    - _SrcBlend: 1
+    - _StencilRef: 0
+    - _StencilRefDepth: 8
+    - _StencilRefDistortionVec: 4
+    - _StencilRefGBuffer: 10
+    - _StencilRefMV: 40
+    - _StencilWriteMask: 6
+    - _StencilWriteMaskDepth: 9
+    - _StencilWriteMaskDistortionVec: 4
+    - _StencilWriteMaskGBuffer: 15
+    - _StencilWriteMaskMV: 41
+    - _SubsurfaceMask: 1
+    - _SupportDecals: 1
+    - _SurfaceType: 0
+    - _TexWorldScale: 1
+    - _TexWorldScaleEmissive: 1
+    - _Thickness: 1
+    - _TransmissionEnable: 1
+    - _TransmissionMask: 1
+    - _TransparentBackfaceEnable: 0
+    - _TransparentCullMode: 2
+    - _TransparentDepthPostpassEnable: 0
+    - _TransparentDepthPrepassEnable: 0
+    - _TransparentSortPriority: 0
+    - _TransparentWritingMotionVec: 0
+    - _TransparentZWrite: 0
+    - _UVBase: 0
+    - _UVDetail: 0
+    - _UVEmissive: 0
+    - _UseEmissiveIntensity: 0
+    - _UseShadowThreshold: 0
+    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestGBuffer: 4
+    - _ZTestTransparent: 4
+    - _ZWrite: 1
+    m_Colors:
+    - Color_78e7c5abc8fc463186d9e3ca7898fad8: {r: 0, g: 0, b: 0, a: 0}
+    - ParentPos: {r: 0, g: 0, b: 0, a: 0}
+    - ParentPos_1: {r: 0.5, g: -5, b: 0, a: 0}
+    - ParentPos_2: {r: 0, g: 5, b: 0, a: 0}
+    - Wave_0: {r: 64, g: 1, b: 0.00009628853, a: 0}
+    - Wave_1: {r: 63, g: 1, b: 0.00018735226, a: 0}
+    - Wave_10: {r: 54, g: 1, b: 0.0011512055, a: 0}
+    - Wave_11: {r: 53, g: 1, b: 0.0009470238, a: 0}
+    - Wave_12: {r: 52, g: 1, b: 0.0005479552, a: 0}
+    - Wave_13: {r: 51, g: 1, b: 0.0009718399, a: 0}
+    - Wave_14: {r: 50, g: 1, b: 0.0014866727, a: 0}
+    - Wave_15: {r: 49, g: 1, b: 0.001152836, a: 0}
+    - Wave_16: {r: 48, g: 1, b: 0.0011167219, a: 0}
+    - Wave_17: {r: 47, g: 1, b: 0.0034106013, a: 0}
+    - Wave_18: {r: 46, g: 1, b: 0.002969803, a: 0}
+    - Wave_19: {r: 45, g: 1, b: 0.0013504879, a: 0}
+    - Wave_2: {r: 62, g: 1, b: 0.0003792223, a: 0}
+    - Wave_20: {r: 44, g: 1, b: 0.00041187138, a: 0}
+    - Wave_21: {r: 43, g: 1, b: 0.0015075409, a: 0}
+    - Wave_22: {r: 42, g: 1, b: 0.003604244, a: 0}
+    - Wave_23: {r: 41, g: 1, b: 0.0019559618, a: 0}
+    - Wave_24: {r: 40, g: 1, b: 0.0018384432, a: 0}
+    - Wave_25: {r: 39, g: 1, b: 0.0031488624, a: 0}
+    - Wave_26: {r: 38, g: 1, b: 0.0034332327, a: 0}
+    - Wave_27: {r: 37, g: 1, b: 0.0023742279, a: 0}
+    - Wave_28: {r: 36, g: 1, b: 0.0008327489, a: 0}
+    - Wave_29: {r: 35, g: 1, b: 0.0022847468, a: 0}
+    - Wave_3: {r: 61, g: 1, b: 0.0005267024, a: 0}
+    - Wave_30: {r: 34, g: 1, b: 0.0012602791, a: 0}
+    - Wave_31: {r: 33, g: 1, b: 0.004522365, a: 0}
+    - Wave_32: {r: 32, g: 1, b: 0.0035921894, a: 0}
+    - Wave_33: {r: 31, g: 1, b: 0.003987021, a: 0}
+    - Wave_34: {r: 30, g: 1, b: 0.0064382874, a: 0}
+    - Wave_35: {r: 29, g: 1, b: 0.0032416007, a: 0}
+    - Wave_36: {r: 28, g: 1, b: 0.0026610706, a: 0}
+    - Wave_37: {r: 27, g: 1, b: 0.0007258799, a: 0}
+    - Wave_38: {r: 26, g: 1, b: 0.002491117, a: 0}
+    - Wave_39: {r: 25, g: 1, b: 0.00081347703, a: 0}
+    - Wave_4: {r: 60, g: 1, b: 0.00046325033, a: 0}
+    - Wave_40: {r: 24, g: 1, b: 0.00065955595, a: 0}
+    - Wave_41: {r: 23, g: 1, b: 0.0006004472, a: 0}
+    - Wave_42: {r: 22, g: 1, b: 0.00037995324, a: 0}
+    - Wave_43: {r: 21, g: 1, b: 0.00046415848, a: 0}
+    - Wave_44: {r: 20, g: 1, b: 0.00044676565, a: 0}
+    - Wave_45: {r: 19, g: 1, b: 0.00031356228, a: 0}
+    - Wave_46: {r: 18, g: 1, b: 0.00024112371, a: 0}
+    - Wave_47: {r: 17, g: 1, b: 0.0002130875, a: 0}
+    - Wave_48: {r: 16, g: 1, b: 0.00040041897, a: 0}
+    - Wave_49: {r: 15, g: 1, b: 0.00022571397, a: 0}
+    - Wave_5: {r: 59, g: 1, b: 0.0007024416, a: 0}
+    - Wave_50: {r: 14, g: 1, b: 0.00020779193, a: 0}
+    - Wave_51: {r: 13, g: 1, b: 0.0008859976, a: 0}
+    - Wave_52: {r: 12, g: 1, b: 0.0005346227, a: 0}
+    - Wave_53: {r: 11, g: 1, b: 0.00013757992, a: 0}
+    - Wave_54: {r: 10, g: 1, b: 0.00018440792, a: 0}
+    - Wave_55: {r: 9, g: 1, b: 0.00013768997, a: 0}
+    - Wave_56: {r: 8, g: 1, b: 0.00009664534, a: 0}
+    - Wave_57: {r: 7, g: 1, b: 0.00012150492, a: 0}
+    - Wave_58: {r: 6, g: 1, b: 0.00015417249, a: 0}
+    - Wave_59: {r: 5, g: 1, b: 0.0000020623347, a: 0}
+    - Wave_6: {r: 58, g: 1, b: 0.0020391822, a: 0}
+    - Wave_60: {r: 4, g: 1, b: 0.0000017067359, a: 0}
+    - Wave_61: {r: 3, g: 1, b: 0.0000017646599, a: 0}
+    - Wave_62: {r: 2, g: 1, b: 0.0000020480916, a: 0}
+    - Wave_63: {r: 0, g: 0, b: 0, a: 0}
+    - Wave_7: {r: 57, g: 1, b: 0.003010818, a: 0}
+    - Wave_8: {r: 56, g: 1, b: 0.00221902, a: 0}
+    - Wave_9: {r: 55, g: 1, b: 0.0011574752, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color_Acute: {r: 1, g: 0, b: 0, a: 1}
+    - _Color_Emesive: {r: 0.730647, g: 0, b: 2, a: 1}
+    - _Color_Grave: {r: 0, g: 0.35958576, b: 1, a: 1}
+    - _DiffusionProfileAsset: {r: -1.0530073e+33, g: -2.523648e+22, b: -2.4071458e+14, a: -1.7574724e+38}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _Emesive_Acute: {r: 0.8439293, g: 0, b: 0.99495065, a: 0}
+    - _Emesive_Grave: {r: 0.005049348, g: 0.8412165, b: 0.99495065, a: 0}
+    - _EmisiveAcute: {r: 0.2411, g: 0.7788504, b: 0.8113208, a: 1}
+    - _EmisiveGrave: {r: 0.2411, g: 0.7788504, b: 0.8113208, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveAcute: {r: 1, g: 0.0006808483, b: 0.66382676, a: 0}
+    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissiveGrave: {r: 0.0016461015, g: 0.4181588, b: 0.9989055, a: 0}
+    - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
+    - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UVDetailsMappingMask: {r: 1, g: 0, b: 0, a: 0}
+    - _UVMappingMask: {r: 1, g: 0, b: 0, a: 0}
+    - _UVMappingMaskEmissive: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &3330421734149843281
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 13
+  hdPluginSubTargetMaterialVersions:
+    m_Keys: []
+    m_Values: 
+--- !u!114 &5829841922953045607
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa486462e6be1764e89c788ba30e61f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DiffusionProfileReferences:
+  - {fileID: 11400000, guid: 48ab4ff65002abe4bbed5ad7b03704ff, type: 2}
+  m_MaterialReferences: []

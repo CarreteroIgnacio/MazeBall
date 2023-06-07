@@ -1,0 +1,25 @@
+{
+    "name": "SysManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5510bd54e70c5654fbfe21f84f801d98",
+        "GUID:f6e59f8b25426054cba2e7e0c184ff2c",
+        "GUID:02490096ad9cdf84198e1f54951e6d16",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:e0cd26848372d4e5c891c569017e11f1"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

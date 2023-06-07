@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd36713168442b043bb728c729ad5ba7, type: 3}
+  m_Name: Villain
+  m_EditorClassIdentifier: 
+  duration: 5
+  heightMapList:
+  - {fileID: 1997870075, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1190195539, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1701051169, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1301705912, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -704861827, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1513424165, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1912359433, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -575994025, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -825692020, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -638024930, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1894392994, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -765002576, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: 1961081865, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: 1966645815, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: -1821607750, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  - {fileID: 557156952, guid: ded88bc01afdb8b43b90a16f9cbd42d0, type: 3}
+  clip: {fileID: 8300000, guid: ee89bb84ce68f5042b3fcb11d46a9819, type: 3}
+  northColor: {r: 1, g: 0, b: 0.8657131, a: 0}
+  eastColor: {r: 0.617486, g: 0, b: 1, a: 0}
+  southColor: {r: 0, g: 0.4505098, b: 1, a: 0}
+  westColor: {r: 0, g: 0.67504406, b: 1, a: 0}
+  acuteColorShader: {r: 1, g: 0, b: 0.6649213, a: 0}
+  graveColorShader: {r: 0, g: 0.41884828, b: 1, a: 0}
+  maxVolume: 0.613
+  speedLerp: 10
+  smoothDownRate: 5
+  shapeMul: 0.2
+  intencityMul: 500
+  rangeMul: 7.2
